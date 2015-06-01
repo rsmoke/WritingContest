@@ -1,0 +1,80 @@
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+body { 
+	padding-top: 70px;
+}
+
+.notes {
+	padding: 0px 20px;
+	color: #888;
+	font-size: .9em;
+	font-style: italic;
+
+}
+
+.hopwood {
+	background: #E6E6DC;
+	padding: 5px;
+}
+
+.notHopwood {
+	background: #FFFFF0;
+}
+
+li {
+	margin-top: 5px;
+
+}
+
+/*.container {
+  width: auto;
+  max-width: 680px;
+  padding: 5px 15px;
+}*/
+
+/*form h5 {
+	color: #aaa;
+}*/
+
+/*.btn-toolbar{
+  text-align: center;
+}​*/
+
+footer {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: .6em; 
+	color: #5e8bac;
+	line-height:12px;
+	background-color: #ddd;	
+	padding-top: .3em;
+}
+
+footer a img {
+	border: 0px;
+	}
+	
+footer a {
+	color: #5e8bac; 
+	text-decoration: none;
+	}
+
+footer a:hover {
+	background-color: transparent; 
+	text-decoration: underline;
+}
+
+footer .mlogo {
+	width: 75px;
+	height: 75px;
+}
+
+.btn-toolbar {
+	padding: 5px 0px;
+
+}
+.outputContainer {
+	padding: 5px 20px;
+	background-color: #efe;
+}

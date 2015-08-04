@@ -99,6 +99,11 @@ switch ($classLevel) {
 
   <link rel="stylesheet" href="css/bootstrap.min.css"><!-- 3.3.1 -->
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+
   <link href="css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="css/normalize.css" media="all">
   <link rel="stylesheet" href="css/default.css" media="all">
@@ -212,16 +217,16 @@ switch ($classLevel) {
               <label for="dept">Department (if graduate)</label>
               <input class="form-control" type="text" tabindex="250" name ="dept" value="<?php echo (isset($dept))? $dept : "";?>" placeholder="example: Dept. of English Language and Literature" />
               <label for="gradYear">Expected graduation date</label>
-              <input class="form-control" type="month" min="2015-01" tabindex="260" required name="gradYearMonth" value="<?php echo $gradYearMonth;?>"  />
+              <input class="date-picker form-control" id="gradYearMonth" tabindex="260" required name="gradYearMonth" value="<?php echo $gradYearMonth;?>"  />
               <label for="degree">Degree</label>
               <input class="form-control" type="text" tabindex="270" required name="degree" value="<?php echo $degree;?>" placeholder="example: Bachelors" />
-              <label for="finAid">Do you receive NEED-BASED financial aid?&nbsp;&nbsp;</label>
+              <label for="finAid">Do you currently receive NEED-BASED financial aid?&nbsp;&nbsp;</label>
 
               <label class="radio-inline">
-                <input type="radio" id="inlineRadio1" id="finRadY" name="finAid" required value="1"> YES
+                <input type="radio" id="inlineRadio1" name="finAid" required <?php echo ($finAid == 1)? 'checked' : ''; ?> value="1"> YES
               </label>
               <label class="radio-inline">
-                <input type="radio" id="inlineRadio2" id="finRadN" name="finAid" required value="0"> NO
+                <input type="radio" id="inlineRadio2" name="finAid" required <?php echo ($finAid == 0)? 'checked' : ''; ?> value="0"> NO
               </label>
 
               <br />
@@ -245,7 +250,7 @@ switch ($classLevel) {
       <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="well well-sm">
-              <button type="submit" id="applyBasicInfo" class='btn btn-sm btn-success applyBtn center-block'>Submit</button>
+              <button type="submit" id="applyBasicInfo" class='btn btn-sm btn-success applyBtn center-block'>Submit</button><a id='cancel' class="btn btn-xs btn-warning center-block" href="index.php">Cancel</a>
             </div>
         </div>
       </div>

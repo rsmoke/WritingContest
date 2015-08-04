@@ -30,7 +30,7 @@ while ($row = $res->fetch_assoc()) {
 
 
 
-    $sql = "SELECT * FROM vw_contestListing";
+    $sql = "SELECT * FROM vw_contestlisting";
     $res = $db->query($sql);
 if ($res->num_rows > 0) {
         echo "<table class='table table-responsive table-condensed table-striped'>";

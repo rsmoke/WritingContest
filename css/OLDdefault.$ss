@@ -64,16 +64,3 @@ footer .mlogo {
 	padding: 5px 20px;
 	background-color: #efe;
 }
-
-.ui-datepicker-calendar {
-    display: none;
-}
-
-select {
-	color:#000;
-}
-
-#cancel {
-	width: 50px;
-	margin-top: 5px;
-}

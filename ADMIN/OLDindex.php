@@ -1,28 +1,34 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 $isAdmin = false;
-$_SESSION['isAdmin'] = false;
 
-$sqlSelect = <<< _SQL
+
+$sql = <<< _SQL
   SELECT *
   FROM tbl_contestadmin
   WHERE uniqname = '$login_name'
   ORDER BY uniqname
 _SQL;
 
-if (!$resAdmin = $db->query($sqlSelect)) {
-        db_fatal_error("data insert issue", $db->error);
-        exit;
+$resAdmin = $db->query($sql);
+
+if ($db->error) {
+    try {
+        throw new Exception("MySQL error $db->error <br> Query:<br> $sql", $db->errno);
+    } catch (Exception $e) {
+        echo "Error No: ".$e->getCode(). " - ". $e->getMessage() . "<br >";
+        echo nl2br($e->getTraceAsString());
+    }
 }
 
 if ($resAdmin->num_rows > 0) {
     $isAdmin = true;
-    $_SESSION['isAdmin'] = true;
+    if (isset($_POST['dram'])) {
+        $result = $db->query('DELETE FROM tbl_contestadmin WHERE id = '.(int)$_POST['dram']);
+    }
+
 }
 
 ?>
@@ -59,7 +65,7 @@ if ($resAdmin->num_rows > 0) {
         -moz-appearance:textfield;
     }
   </style>
-  <base href="https://quill.english.lsa.umich.edu/WritingContest/">
+  <base href="https://<?php echo $_SERVER["SERVER_NAME"] ?>/WritingContest/">
 </head>
 
 <body>
@@ -307,24 +313,17 @@ if (!$resultsInd) {
       <div id="adminList">
         <span id="currAdmins">
             <?php
-            $sqlAdmSel = <<<SQL
-              SELECT *
-              FROM tbl_contestadmin
-              ORDER BY uniqname
-SQL;
-            if (!$resADM = $db->query($sqlAdmSel)) {
-                    db_fatal_error("data insert issue", $db->error);
-                    exit;
-            }
+            $resADM = $db->query("SELECT * FROM tbl_contestadmin ORDER BY uniqname");
             while ($row = $resADM->fetch_assoc()) {
                 $fullname = ldapGleaner($row['uniqname']);
-                echo '<div class="record">
-              <button type="button" class="btn btn-xs btn-danger btnDelADM" data-delid="' . $row['id'] . '"><span class="glyphicon glyphicon-remove"></span></button>
-              <strong>' . $row['uniqname'] . '</strong>  -- ' . $fullname[0] . " " . $fullname[1] . '</div>';
+                echo '<div class="record" id="record-',$row['id'],'">
+              <a href="ADMIN/?dram=',$row['id'],'" class="delete"><span style=color:red;font-weight:bold;>X</span></a>
+              <strong>',$row['uniqname'],'</strong>  -- ', $fullname[0], "&nbsp;", $fullname[1],
+                '</div>';
             }
             ?>
         </span>
-      </div>
+      </div><!-- testing delete -->
       <br />
       <div id="myAdminForm"><!-- add Admin -->
         To add an Administrator please enter their <b>uniqname</b> below:<br>

@@ -13,8 +13,7 @@ $( document ).ready(function(){
 		window.location = 'coversheet.php?sbmid=' + entryid;
 	});
 
-	$("#sameAddress").click( function(e){
-		e.preventDefault();
+	$("#sameAddress").click( function(){
 		var streetL = $( "input[name ='streetL']" ).val();
 		var cityL = $( "input[name ='cityL']" ).val();
 		var stateL = $( "select[name ='stateL']" ).val();
@@ -34,6 +33,7 @@ $( document ).ready(function(){
 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this);
+	  // modal.find('.modal-title').text('Eligibility Rules:');
 	  modal.find('.modal-body').load( 'eligibiltyRules.html #' + pickRule, function(response, status, xhr) {
                 if (status == 'error') {
                     //console.log('got here');
@@ -49,19 +49,5 @@ $( document ).ready(function(){
 		var useContest = $(this).data('contest-num');
 		window.location = useAppTemplate + '.php?id=' + useContest;
 	});
-
-	$(function() {
-    $('.date-picker').datepicker( {
-        changeMonth: true,
-        changeYear: true,
-        showButtonPanel: true,
-        dateFormat: 'yy-mm',
-        onClose: function(dateText, inst) {
-            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-            $(this).datepicker('setDate', new Date(year, month, 1));
-        }
-    });
-});
 
 });

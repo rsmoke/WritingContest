@@ -1,10 +1,10 @@
-$( document ).ready(function(){
+$( document ).ready(function(){	
 	$('#contest').hide();
 	$('#applicant').hide();
 	$('#manuscript_type').hide();
 	$('#contests').hide();
 	$('#admin_access').hide();
-	$('#output').hide();
+	$('#output').hide();			
 
 	$('#admContestBtn').click( function(){
 		$('#contest').toggle();
@@ -12,7 +12,7 @@ $( document ).ready(function(){
 		$('#contests').hide();
 		$('#admin_access').hide();
 		$('#initialView').hide();
-		$('#output').hide();
+		$('#output').hide();		
 	});
 
 	// $('#admApplicantBtn').click( function(){
@@ -31,9 +31,9 @@ $( document ).ready(function(){
 		$('#admin_access').hide();
 		$('#initialView').hide();
 		$('#output').toggle();
-		$("span#outputData").empty();
+		$("span#outputData").empty();	
 	});
-
+	
 	// $('#admManuscriptTypeBtn').click( function(){
 	// 	$('#manuscript_type').toggle();
 	// 	$('#applicant').hide();
@@ -42,7 +42,7 @@ $( document ).ready(function(){
 	// 	$('#initialView').hide();
 
 	// });
-
+	
 	$('#admAdminManageBtn').click( function(){
 		$('#admin_access').toggle();
 		$('#applicant').hide();
@@ -50,13 +50,13 @@ $( document ).ready(function(){
 		$('#contests').hide();
 		$('#manuscript_type').hide();
 		$('#initialView').hide();
-		$('#output').hide();
+		$('#output').hide();					
 	});
 
 	//When the submit button of the admin page is selected the database is updated with
 	//	the new admins name entered in the text box
-	$("#adminSub").click(function() {
-		//set up a regex string and test the textbox entry against.
+	$("#adminSub").click(function() {	
+		//set up a regex string and test the textbox entry against. 
 		var reg = /^[a-z]{1,8}$/;
 		if (!reg.test($("#myAdminForm :input").val())){
 	         alert ("!! You did not enter a uniqname here !!");
@@ -69,35 +69,28 @@ $( document ).ready(function(){
 			});
 		}
 		clearInput();
-	});
+	});				
 
 	//on the admin management page each admin uniqname has a RED X that has an anchor tag with the  class of 'delete'
-
-	// $('.btnDelADM').click( function ( event ){ 
-	// 	console.log($(this).data('delid'));
-	// });
-	$('.btnDelADM').click( function ( event ){
-		var stuff = $(this).data('delid');
-		$.post('ADMIN/deleteAdm.php', {'delid' : stuff}).done(function( data ){
-				console.log( "result: " + data );
-		}).success(done());
-	});
-		// 	// $.ajax({ //take record value of to be deleted record and set the URL to reflect this. When page reloads
-		// 	// 		 // the record is removed
-		// 	// 	type: 'post',
-		// 	// 	url: 'deleteAdm.php',
-		// 	// 	data: item2Del.attr('delID'),
-		// 	// 	beforeSend: function() { // display animation for UI enhancement
-		// 	// 		parent.animate({'backgroundColor':'#fb6c6c'},200);
-		// 	// 	},
-		// 	// 	success: function() {
-		// 	// 		parent.slideUp(300,function() {
-		// 	// 			parent.remove();
-		// 	// 		});
-		// 	// 	}
-		// 	// });
-		// });
-
+	$("a.delete").click(function(e) {
+			e.preventDefault();
+			var parent = $(this).parent();
+			$.ajax({ //take record value of to be deleted record and set the URL to reflect this. When page reloads
+					 // the record is removed
+				type: 'post',
+				url: 'ADMIN/index.php',
+				data: 'ajax=1&dram=' + parent.attr('id').replace('record-',''),
+				beforeSend: function() { // display animation for UI enhancement
+					parent.animate({'backgroundColor':'#fb6c6c'},200);
+				},
+				success: function() {
+					parent.slideUp(300,function() {
+						parent.remove();
+					});
+				}
+			});
+		});
+	
 	//simply sets the input(s) of the named form to an empty value
 	function clearInput(){
 			$("#myAdminForm :input").each( function() {
@@ -109,15 +102,15 @@ $( document ).ready(function(){
 	function done(){
 		setTimeout( function(){
 		updates();
-		}, 200);
+		}, 200);	
 	}
 
 	//Set the selected region to empty then populate it with the formatted result of the JSON string that is returned
 	function updates(){
 		$.getJSON("ADMIN/myAdminFormView.php", function(data){
 		   	$("span#currAdmins").empty();
-		   	$.each(data.result, function(){
-		   		$("span#currAdmins").append("<div><button class='btn btn-xs btn-danger btnDelADM' data-delID='" + this.adminID + "'><span class='glyphicon glyphicon-remove'></span></button>&nbsp;<strong>" + this.admin + "</strong> -- " + this.adminFname + " " + this.adminLname + "</div>");
+		   	$.each(data.result, function(){	
+		   		$("span#currAdmins").append("<div class='record' id='record-" + this.adminID + "'><a href='ADMIN/?delete=" + this.adminID + "' class='delete'><span style=color:red;font-weight:bold;;>X</span></a>&nbsp;<strong>" + this.admin + "</strong> -- " + this.adminFname + " " + this.adminLname + "</div>"); 		
 		   	    });
 		});
 
@@ -125,7 +118,7 @@ $( document ).ready(function(){
 
 	$('#contests').on('click', '.editBtn', function ( event ){
 		var useContests = $(this).data('contestsid');
-		var contestName = "";
+		var contestName = "";	
 		$.getJSON("ADMIN/contestsInstance.php", {id: useContests} ,function(data){
 			$("span#outputData").empty();
 			$.each(data.result, function () {
@@ -133,7 +126,7 @@ $( document ).ready(function(){
 				$("span#outputData").append("<div class='outputContainer'><div class='contestInstance' id='contest-" + this.id + "'><strong>Opened:</strong> " + this.date_open + " <strong>Closed:</strong> " + this.date_closed + "  (<strong>Notes:</strong> " + this.notes + ")</div></div>");
 			});
 			if (contestName === ""){
-				$("span#outputData").prepend("<span><strong>There are no contests listed for this item</strong><span>");
+				$("span#outputData").prepend("<span><strong>There are no contests listed for this item</strong><span>");				
 			} else {
 				$("span#outputData").prepend("<span><h4>Here is the complete list of all contests related to the " +  contestName + "</h4><span>");
 			}

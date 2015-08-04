@@ -2,7 +2,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
-		$queryAdmin = "SELECT * FROM tbl_contestAdmin ORDER BY uniqname ASC";
+		$queryAdmin = "SELECT * FROM tbl_contestadmin ORDER BY uniqname ASC";
 		
 		$resAdmin = $db->query($queryAdmin);
 		$resultAdmin = array();

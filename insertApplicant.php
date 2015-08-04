@@ -33,11 +33,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
   INSERT INTO `tbl_applicant` (`userFname`, `userLname`, `umid`, `uniqname`, `streetL`, `cityL`, `stateL`
     , `zipL`, `usrtelL`, `streetH`, `cityH`, `stateH`, `zipH`, `usrtelH`, `classLevel`, `school`, `major`
     , `department`, `gradYearMonth`, `degree`, `finAid`, `finAidDesc`, `namePub`, `homeNewspaper`, `penName`
-    , `created_by`)
+    , `created_by`, `created_on`)
   VALUES ('$userFname', '$userLname', '$umid', '$uniqname', '$streetL','$cityL', '$stateL'
     , '$zipL', '$usrtelL', '$streetH','$cityH', '$stateH', '$zipH', '$usrtelH', '$classLevel', '$school'
     , '$major', '$department', '$gradYearMonth', '$degree', '$finAid', '$finAidDesc', '$namePub'
-    , '$homeNewspaper', '$penName', '$login_name')
+    , '$homeNewspaper', '$penName', '$login_name', now())
 SQL;
 if ($db->query($sqlInsert) === true) {
     //echo "New record created successfully";

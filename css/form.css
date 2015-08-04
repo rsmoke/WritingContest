@@ -1,4 +1,4 @@
-/*@charset "utf-8";
+@charset "utf-8";
 
 body {
     background-color: #FFFFFF;
@@ -14,10 +14,10 @@ form {
     display: inline-block;
     font-weight: bold;
 }*/
-/*[type=submit] {
+[type=submit] {
     margin-left: 120px;
 }
 .result {
     font-weight: bold;
     color: #012773;
-}*/
+}

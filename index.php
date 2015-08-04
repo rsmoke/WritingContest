@@ -44,6 +44,11 @@ if ($result->num_rows > 0) {
 
   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"><!-- 3.3.1 -->
   <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+
   <link type="text/css" href="css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
   <link type="text/css" rel="stylesheet" href="css/normalize.css" media="all">
   <link type="text/css" rel="stylesheet" href="css/default.css" media="all">
@@ -130,11 +135,14 @@ if ($hasApplicantDetails) {
                     <div class="col-md-12 column">
                     <h3>Instructions:</h3>
                     <ol>
-                    <li>Select the apply button <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span></button> next to the contest you would like to enter.</li>
-                    <li>Completely fill in the form that opens up and select the upload button <button>Upload Application</button></li>
-                    <li>Select the Coversheet button <button class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-file"></span></button> to print a copy of the entry's coversheet which is required for submission.</li>
-                    <li><i>NOTE: Be sure your profile is up to date before submitting your entry.</i></li>
+                    <li>Select the apply button, <i>it looks like this</i> ( <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span></button> ), next to the contest you would like to enter.</li>
+                    <li>Completely fill in the form that opens up and select the upload button, <i>it looks like this</i> ( <button>Upload Application</button> )</li>
+                    <li>Select the Coversheet button next to your entry below, <i>it looks like this</i> ( <button class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-file"></span></button> ), to print a copy of the entry's coversheet which is required for submission.</li>
                     </ol>
+                    <ul>
+                    <li><i>NOTE: Be sure your profile is up to date before submitting your entry.</i></li>
+                    <li><i>NOTE: You will need to upload a separate application for each genre in the Hopwood Contest and poem in the Rapaport Contest.</i></li>
+                    </ul>
                     </div>
                 </div>
             </div>
@@ -232,7 +240,7 @@ if ($hasApplicantDetails) {
     				    <label for="dept">Department (if graduate)</label>
     				    <input class="form-control" type="text" tabindex="250" name ="dept" placeholder="example: Dept. of English Language and Literature" />
     				    <label for="gradYear">Expected graduation date</label>
-    				    <input class="form-control" type="month" min="2015-01" tabindex="260" required name="gradYearMonth" />
+    				    <input class="date-picker form-control" id="gradYearMonth" tabindex="260" required name="gradYearMonth" />
     				    <label for="degree">Degree</label>
     				    <input class="form-control" type="text" tabindex="270" required name="degree" placeholder="example: Bachelors" />
     				    <label for="finAid">Do you receive NEED-BASED financial aid?&nbsp;&nbsp;</label>
@@ -262,7 +270,7 @@ if ($hasApplicantDetails) {
     		<div class="row clearfix">
     			<div class="col-md-12 column">
     			    <div class="well well-sm">
-    			    	<button type="submit" id="applyBasicInfo" class='btn btn-sm btn-success applyBtn center-block'>Submit</button>
+    			    	<button type="submit" id="applyBasicInfo" class='btn btn-sm btn-success applyBtn center-block'>Submit</button><a id='cancel' class="btn btn-xs btn-warning center-block" href="index.php">Cancel</a>
     			    </div>
     			</div>
     		</div>

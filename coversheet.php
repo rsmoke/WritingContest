@@ -25,11 +25,21 @@ SQL;
   //do stuff with your $result set
 
     if ($result->num_rows > 0) {
+        echo "<!DOCTYPE html>
+        <html lang='en'>
+        <head>
+          <META http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+          <title>Hopwood Writing Contests</title>
+        </head>
+
+        <body>";
+
         echo "<div style='font-size:.8rem;'>Instructions <br>";
         echo "<ol>";
         echo "<li>Follow the instructions related to your specific contest for preparing your submission. See instructions <a href='http://www.lsa.umich.edu/hopwood/contestsprizes' target='_blank'>here</a></li>";
         echo "<li>Print this page using your browsers print button.</li>";
         echo "<li>Attach printed Coversheet to your entry.</li>";
+        echo "<li>Use the browser back button to return to your list of entries</li>";
         echo "</ol></div>";
         echo "<h1>============================================================</h1>";
         echo "<h1>Coverpage/Titlesheet</h1>";
@@ -48,6 +58,7 @@ SQL;
 
         }
            echo "<h1>============================================================</h1>";
+           echo "</body></html>";
     } else {
         echo "Nothing to show!";
     }

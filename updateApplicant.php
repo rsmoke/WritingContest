@@ -7,7 +7,6 @@ try {
     $applicantid = htmlspecialchars($_POST["id"]);
     $userFname = $db->real_escape_string(htmlspecialchars($_POST["userFname"]));
     $userLname = $db->real_escape_string(htmlspecialchars($_POST["userLname"]));
-    $uniqname = htmlspecialchars($_POST["uniqname"]);
     $streetL = $db->real_escape_string(htmlspecialchars($_POST["streetL"]));
     $cityL = $db->real_escape_string(htmlspecialchars($_POST["cityL"]));
     $stateL = htmlspecialchars($_POST["stateL"]);
@@ -65,9 +64,7 @@ SQL;
       //echo "New record created successfully";
         header("Location: index.php");
     } else {
-        echo "<pre>";
-        print_r($db->error_list);
-        echo "</pre>";
+        db_fatal_error($errorMsg, $msg = "ERROR: Update failed", $queryString = $sql);
     }
     $result->close;
     $db->close();

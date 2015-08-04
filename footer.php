@@ -45,6 +45,7 @@
 
   <script type="text/javascript" src="js/modernizr-latest.js"></script>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/bootstrap-formhelpers.min.js"></script>
   <script type="text/javascript" src="js/myScript.js"></script>

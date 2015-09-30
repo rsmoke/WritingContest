@@ -59,7 +59,7 @@ if ($resAdmin->num_rows > 0) {
         -moz-appearance:textfield;
     }
   </style>
-  <base href="https://quill.english.lsa.umich.edu/WritingContest/">
+  <base href=<?php echo URL ?>>
 </head>
 
 <body>

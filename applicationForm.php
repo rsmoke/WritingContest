@@ -10,7 +10,7 @@ if (isset($_POST['upload'])) {
         // this comes from the radio buttons selecting category name
         $categoryID = htmlspecialchars($_POST['categoryName']);
         $title = $db->real_escape_string(htmlspecialchars($_POST["title"]));
-        $documentName = $_SERVER["REQUEST_TIME"] . "_" . $title . "_" . $login_name;
+        //$documentName = $_SERVER["REQUEST_TIME"] . "_" . $title . "_" . $login_name;
         //if the contest requires enter the value otherwise enter default NoValue
         $courseNameNum = (strlen($db->real_escape_string(htmlspecialchars($_POST["courseNameNum"]))) > 0 ? $db->real_escape_string(htmlspecialchars($_POST["courseNameNum"])) : "NoValue" );
         $instrName = (strlen($db->real_escape_string(htmlspecialchars($_POST["instrName"]))) > 0 ? $db->real_escape_string(htmlspecialchars($_POST["instrName"])) : "NoValue" );
@@ -29,6 +29,56 @@ if (isset($_POST['upload'])) {
     } else {
             $applicantID = "failure";
     }
+
+        if (strlen(basename($_FILES["fileToUpload"]["name"])) > 8) {
+            $target_dir = "contestfiles/";
+            $target_file = $target_dir . getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
+            $uploadOk = 1;
+            $fileErrMessage = "";
+            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+            // Check if image file is a actual image or fake image
+
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if ($check !== false) {
+                echo "File is a pdf - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                $fileErrMessage = $fileErrMessage . " The file selected is not an image.";
+                $uploadOk = 0;
+            }
+
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                $fileErrMessage = $fileErrMessage . " Sorry, that file already exists.";
+                $uploadOk = 0;
+            }
+            // Check file size
+            if ($_FILES["fileToUpload"]["size"] > 2048000) {
+                $fileErrMessage = $fileErrMessage . " Sorry, your file was too large.";
+                $uploadOk = 0;
+            }
+            // Allow certain file formats
+            if ($imageFileType != "pdf") {
+                $fileErrMessage = $fileErrMessage . " Sorry, only PDF files are allowed.";
+                $uploadOk = 0;
+            }
+        // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 2 megabytes or less and in PDF format, then edit the record and upload the image.";
+                $target_file = "empty";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    echo "The file ". basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+                } else {
+                    $target_file = "empty";
+                    $fileErrMessage = $fileErrMessage . "Sorry, there was an error uploading your file.";
+                }
+            }
+        } else {
+            $target_file = "empty";
+        }
+
 
         $sqlInsert = <<<SQL
         INSERT INTO `tbl_entry`
@@ -50,7 +100,7 @@ if (isset($_POST['upload'])) {
       $categoryID,
       $classLevelID,
       '$title',
-      '$documentName',
+      '$target_file',
       '$courseNameNum',
       '$instrName',
       '$termYear',
@@ -197,7 +247,7 @@ SQL;
         <input class="form-control" type="text" required name="title" />
 
 
-        <p>Please select a manuscript type:</p>
+        <label for="categoryName">Please select a manuscript type:</label>
 
           <div id="radioSelectFor<?php echo $contestName; ?>">
     <?php //select what the application category(novel, poetry, fiction etc) is for the submission by
@@ -270,9 +320,13 @@ SQL;
     };
             ?>
           </div>
-          <p>
-          <input class="btn btn-default" type="submit" name="upload" value="Upload Application">
-          </p>
+
+          <label for="fileToUpload">Select file to upload (it must be in PDF format):</label>
+          <input type="file" name="fileToUpload" id="fileToUpload" required />
+
+          <div class='text-center'>
+          <input class="btn btn-success" type="submit" name="upload" value="Upload Application">
+          </div>
          </form>
     </article>
     </section>

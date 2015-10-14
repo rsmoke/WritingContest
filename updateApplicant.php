@@ -62,7 +62,7 @@ SQL;
     //printf("rows inserted: %d\n", $db->affected_rows);
     if ($result) {
       //echo "New record created successfully";
-        header("Location: index.php");
+        safeRedirect('index.php');
     } else {
         db_fatal_error($errorMsg, $msg = "ERROR: Update failed", $queryString = $sql);
     }

@@ -7,10 +7,10 @@ if (isset($_POST['upload'])) {
         $contestID = htmlspecialchars($_POST['contestID']); //Get id passed, this is the contests id
         // output data of each row
 
-        // this comes from the radio buttons selecting category name
+        // this comes from the radio buttons on submission for selecting category name ie. fiction, poetry, screenplay etc
         $categoryID = htmlspecialchars($_POST['categoryName']);
         $title = $db->real_escape_string(htmlspecialchars($_POST["title"]));
-        //$documentName = $_SERVER["REQUEST_TIME"] . "_" . $title . "_" . $login_name;
+
         //if the contest requires enter the value otherwise enter default NoValue
         $courseNameNum = (strlen($db->real_escape_string(htmlspecialchars($_POST["courseNameNum"]))) > 0 ? $db->real_escape_string(htmlspecialchars($_POST["courseNameNum"])) : "NoValue" );
         $instrName = (strlen($db->real_escape_string(htmlspecialchars($_POST["instrName"]))) > 0 ? $db->real_escape_string(htmlspecialchars($_POST["instrName"])) : "NoValue" );
@@ -32,44 +32,46 @@ if (isset($_POST['upload'])) {
 
         if (strlen(basename($_FILES["fileToUpload"]["name"])) > 8) {
             $target_dir = "contestfiles/";
+            //$target_file = $target_dir . getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
             $target_file = $target_dir . getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
             $uploadOk = 1;
             $fileErrMessage = "";
-            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-            // Check if image file is a actual image or fake image
+            $fileType = $_FILES['fileToUpload']['type'];
+            // Check if file is a actual pdf
 
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if ($check !== false) {
-                echo "File is a pdf - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                $fileErrMessage = $fileErrMessage . " The file selected is not an image.";
-                $uploadOk = 0;
-            }
+            // $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            // if ($check !== false) {
+            //     echo "File is a pdf - " . $check["mime"] . ".";
+            //     $uploadOk = 1;
+            // } else {
+            //     $fileErrMessage = $fileErrMessage . " The file selected is not an pdf.";
+            //     $uploadOk = 0;
+            // }
 
             // Check if file already exists
             if (file_exists($target_file)) {
                 $fileErrMessage = $fileErrMessage . " Sorry, that file already exists.";
                 $uploadOk = 0;
-            }
+            } 
             // Check file size
             if ($_FILES["fileToUpload"]["size"] > 2048000) {
                 $fileErrMessage = $fileErrMessage . " Sorry, your file was too large.";
                 $uploadOk = 0;
             }
-            // Allow certain file formats
-            if ($imageFileType != "pdf") {
-                $fileErrMessage = $fileErrMessage . " Sorry, only PDF files are allowed.";
+            // Allow certain file format
+            if ($fileType != "application/pdf") {
+                $fileErrMessage = $fileErrMessage . " Sorry, only PDF files are allowed. Your is a " . $fileType;
                 $uploadOk = 0;
             }
         // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
-                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 2 megabytes or less and in PDF format, then edit the record and upload the image.";
+                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 2 megabytes or less and in PDF format.";
                 $target_file = "empty";
             // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                     echo "The file ". basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+                    $documentName = getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
                 } else {
                     $target_file = "empty";
                     $fileErrMessage = $fileErrMessage . "Sorry, there was an error uploading your file.";
@@ -77,6 +79,7 @@ if (isset($_POST['upload'])) {
             }
         } else {
             $target_file = "empty";
+            $fileErrMessage = $fileErrMessage . "no file information - ";
         }
 
 
@@ -110,14 +113,13 @@ if (isset($_POST['upload'])) {
 SQL;
     if (!$result = $db->query($sqlInsert)) {
         //db_fatal_error($errorMsg, $msg = "ERROR: ", $queryString = "queryString")
-          db_fatal_error($db->error, "data insert issue", $sqlInsert);
+          db_fatal_error($db->error, "data insert issue- " . $fileErrMessage, $sqlInsert);
           exit();
     }
         $db->close();
         unset($_POST['upload']);
-        header('location:index.php');
+        safeRedirect('index.php');
         exit();
-
 }
 
 //Get id passed, this is the contests id
@@ -214,7 +216,7 @@ SQL;
         <h3><?php echo $contestName; ?></h3>
       </header>
       <article>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 
         <input class="form-control" type="hidden" required name="contestID" value="<?php echo $contestID; ?>" >
     <?php

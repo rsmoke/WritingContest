@@ -135,9 +135,9 @@ if ($hasApplicantDetails) {
                     <div class="col-md-12 column">
                     <h3>Instructions:</h3>
                     <ol>
-                    <li>Select the apply button, <i>it looks like this</i> ( <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span></button> ), next to the contest you would like to enter.</li>
-                    <li>Completely fill in the form that opens up and select the upload button, <i>it looks like this</i> ( <button>Upload Application</button> )</li>
-                    <li>Select the Coversheet button next to your entry below, <i>it looks like this</i> ( <button class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-file"></span></button> ), to print a copy of the entry's coversheet which is required for submission.</li>
+                    <li>Select the apply button, <i>it looks like this</i> ( <span class="btn btn-success btn-xs" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></span> ), next to the contest you would like to enter.</li>
+                    <li>Completely fill in the form that opens up and select the upload button, <i>it looks like this</i> ( <span class="btn btn-success btn-xs" disabled="disabled">Upload Application</span> )</li>
+                    <li>Select the details button next to your entry below, <i>it looks like this</i> ( <span class="btn btn-warning btn-xs" disabled="disabled"><span class="glyphicon glyphicon-file"></span></span> ), to view the complete details of your entry submission.</li>
                     </ol>
                     <ul>
                     <li><i>NOTE: Be sure your profile is up to date before submitting your entry.</i></li>

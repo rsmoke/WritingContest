@@ -5,7 +5,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
 if (isset($_POST['upload'])) {
         $contestID = htmlspecialchars($_POST['contestID']); //Get id passed, this is the contests id
-        // output data of each row
 
         // this comes from the radio buttons on submission for selecting category name ie. fiction, poetry, screenplay etc
         $categoryID = htmlspecialchars($_POST['categoryName']);
@@ -19,113 +18,105 @@ if (isset($_POST['upload'])) {
         $recLetter2Name = (strlen($db->real_escape_string(htmlspecialchars($_POST["recLetter2Name"]))) > 0 ? $db->real_escape_string(htmlspecialchars($_POST["recLetter2Name"])) : "NoValue" );
 
         $sqlApplicant = "SELECT id, classLevel FROM tbl_applicant WHERE uniqname = '$login_name' ";
-        $resApplicant = $db->query($sqlApplicant);
-    if ($resApplicant->num_rows > 0) {
-        // output data of each row
-        while ($row = $resApplicant->fetch_assoc()) {
-            $applicantID =  $row["id"];
+        if(!$resApplicant = $db->query($sqlApplicant)){
+          db_fatal_error($db->error, "data lookup issue- " . $login_name, $sqlApplicant);
+          unset($_POST['upload']);
+          exit("Unable to query database");
+        } else {
+          // output data of each row
+            while ($row = $resApplicant->fetch_assoc()) {
+                $applicantID =  $row["id"];
                 $classLevelID =  $row["classLevel"];
+            }
         }
-    } else {
-            $applicantID = "failure";
-    }
-
-        if (strlen(basename($_FILES["fileToUpload"]["name"])) > 8) {
-            $target_dir = "contestfiles/";
-            //$target_file = $target_dir . getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
-            $target_file = $target_dir . getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
-            $uploadOk = 1;
-            $fileErrMessage = "";
+        if ((!empty($_FILES["fileToUpload"])) && ($_FILES['fileToUpload']['error'] == 0) && (strlen(basename($_FILES["fileToUpload"]["name"])) < 250)) {
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] . '/../contestfiles/';
+            $filename = basename($_FILES["fileToUpload"]["name"]);
+            $target_file = getUTCTime() . "_" . $filename . "_" . $login_name;
+            $target_full = $target_dir . $target_file;
+            $ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
             $fileType = $_FILES['fileToUpload']['type'];
-            // Check if file is a actual pdf
+            $max_file_size = 2048000;
 
-            // $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            // if ($check !== false) {
-            //     echo "File is a pdf - " . $check["mime"] . ".";
-            //     $uploadOk = 1;
-            // } else {
-            //     $fileErrMessage = $fileErrMessage . " The file selected is not an pdf.";
-            //     $uploadOk = 0;
-            // }
+            $uploadOk = 0; //if this value is 0 the file will not upload. After all check pass it will set to 1. 
+            $fileErrMessage = "<strong>Use your browser's back button and correct the follwoing errors: </strong>";
 
             // Check if file already exists
-            if (file_exists($target_file)) {
-                $fileErrMessage = $fileErrMessage . " Sorry, that file already exists.";
-                $uploadOk = 0;
-            } 
-            // Check file size
-            if ($_FILES["fileToUpload"]["size"] > 2048000) {
-                $fileErrMessage = $fileErrMessage . " Sorry, your file was too large.";
-                $uploadOk = 0;
+            if (file_exists($target_full)) {
+                $fileErrMessage = $fileErrMessage . " <br />=>Sorry, that file already exists.";
             }
-            // Allow certain file format
-            if ($fileType != "application/pdf") {
-                $fileErrMessage = $fileErrMessage . " Sorry, only PDF files are allowed. Your is a " . $fileType;
-                $uploadOk = 0;
+            // Check file size is not larger than allowable
+            if ($_FILES["fileToUpload"]["size"] > $max_file_size) {
+                $fileErrMessage = $fileErrMessage . " <br />=>Sorry, your file was too large.";
             }
-        // Check if $uploadOk is set to 0 by an error
+            // Allow only pdf file format and change uploadOK to 1 if TRUE
+            if (($fileType == "application/pdf") && ($ext == 'pdf')) {
+                $uploadOk = 1;
+            } else {
+                $fileErrMessage = $fileErrMessage . " <br />=>Sorry, only PDF files are allowed. This is a " . $fileType . " with the extension of " . $ext;
+            }
+            // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
                 $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 2 megabytes or less and in PDF format.";
                 $target_file = "empty";
-            // if everything is ok, try to upload file
+                exit($fileErrMessage);
             } else {
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
-                    $documentName = getUTCTime() . "_" . basename($_FILES["fileToUpload"]["name"]) . "_" . $login_name;
+                // if everything is ok, try to upload file
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_full)) {
+                    echo "The file ". $target_file . " has been uploaded.";
+                    $sqlInsert = <<<SQL
+                      INSERT INTO `tbl_entry`
+                          (`contestID`,
+                          `applicantID`,
+                          `categoryID`,
+                          `classLevelID`,
+                          `title`,
+                          `documentName`,
+                          `courseNameNum`,
+                          `instrName`,
+                          `termYear`,
+                          `recLetter1Name`,
+                          `recLetter2Name`,
+                          `created_by`)
+                          VALUES
+                          ($contestID,
+                          $applicantID,
+                          $categoryID,
+                          $classLevelID,
+                          '$title',
+                          '$target_file',
+                          '$courseNameNum',
+                          '$instrName',
+                          '$termYear',
+                          '$recLetter1Name',
+                          '$recLetter2Name',
+                          '$login_name')
+SQL;
+                    if (!$result = $db->query($sqlInsert)) {
+                          db_fatal_error($db->error, "data insert issue- " . $fileErrMessage, $sqlInsert);
+                          exit();
+                    } else {
+                        $db->close();
+                        unset($_POST['upload']);
+                        safeRedirect('index.php');
+                        exit();
+                    }
                 } else {
                     $target_file = "empty";
                     $fileErrMessage = $fileErrMessage . "Sorry, there was an error uploading your file.";
+                    exit($fileErrMessage . "Sorry, there was an error uploading your file.");
                 }
             }
         } else {
             $target_file = "empty";
             $fileErrMessage = $fileErrMessage . "no file information - ";
+            exit($fileErrMessage . "no file information - ");
         }
-
-
-        $sqlInsert = <<<SQL
-        INSERT INTO `tbl_entry`
-      (`contestID`,
-      `applicantID`,
-      `categoryID`,
-      `classLevelID`,
-      `title`,
-      `documentName`,
-      `courseNameNum`,
-      `instrName`,
-      `termYear`,
-      `recLetter1Name`,
-      `recLetter2Name`,
-      `created_by`)
-      VALUES
-      ($contestID,
-      $applicantID,
-      $categoryID,
-      $classLevelID,
-      '$title',
-      '$target_file',
-      '$courseNameNum',
-      '$instrName',
-      '$termYear',
-      '$recLetter1Name',
-      '$recLetter2Name',
-      '$login_name')
-SQL;
-    if (!$result = $db->query($sqlInsert)) {
-        //db_fatal_error($errorMsg, $msg = "ERROR: ", $queryString = "queryString")
-          db_fatal_error($db->error, "data insert issue- " . $fileErrMessage, $sqlInsert);
-          exit();
-    }
-        $db->close();
-        unset($_POST['upload']);
-        safeRedirect('index.php');
-        exit();
 }
 
-//Get id passed, this is the contests id
+//Since $_POST is not set this page display the contest entry form so Get id passed, this is the contests id
 if (!empty($_GET['id'])) {
     $contestID = htmlspecialchars($_GET['id']);
-
     $sqlSelect = <<<SQL
     SELECT lk_contests.name, lk_contests.id
     FROM lk_contests where lk_contests.id =  (
@@ -135,17 +126,16 @@ if (!empty($_GET['id'])) {
                   )
 SQL;
 
-    $res = $db->query($sqlSelect);
-    if ($res->num_rows > 0) {
+    if(!$res = $db->query($sqlSelect)){
+      db_fatal_error($db->error, "Error: Could not resolve (get) contest name", $sqlSelect);
+      exit();
+    } else {
     // output data of each row
         while ($row = $res->fetch_assoc()) {
             $contestName = $row["name"];
             $contestsID = $row["id"]; //get the tbl_contests id of the contest
         }
-    } else {
-        $contestName = "Error: Could not resolve (get) contest name";
     }
-}
 
 ?>
 
@@ -324,6 +314,7 @@ SQL;
           </div>
 
           <label for="fileToUpload">Select file to upload (it must be in PDF format):</label>
+          <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
           <input type="file" name="fileToUpload" id="fileToUpload" required />
 
           <div class='text-center'>
@@ -341,3 +332,10 @@ SQL;
 
 </body>
 </html>
+<?php
+} else {
+  //no ID in url so go back to index to allow user to reselect a contest
+  safeRedirect('index.php');
+  exit();
+}
+?>

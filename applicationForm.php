@@ -19,15 +19,20 @@ if (isset($_POST['upload'])) {
 
         $sqlApplicant = "SELECT id, classLevel FROM tbl_applicant WHERE uniqname = '$login_name' ";
         if(!$resApplicant = $db->query($sqlApplicant)){
-          db_fatal_error($db->error, "data lookup issue- " . $login_name, $sqlApplicant);
           unset($_POST['upload']);
-          exit("Unable to query database");
-        } else {
+          db_fatal_error($db->error, "data lookup issue- " . $login_name, $sqlApplicant);
+          exit();
+        } 
+        if ($resApplicant->num_rows > 0) {
           // output data of each row
             while ($row = $resApplicant->fetch_assoc()) {
                 $applicantID =  $row["id"];
                 $classLevelID =  $row["classLevel"];
             }
+        } else { 
+            //no contest matched ID so go back to index to allow user to reselect a contest
+            non_db_error("no applicant matched ID! Exited application");
+            exit();
         }
         if ((!empty($_FILES["fileToUpload"])) && ($_FILES['fileToUpload']['error'] == 0) && (strlen(basename($_FILES["fileToUpload"]["name"])) < 250)) {
             $target_dir = $_SERVER["DOCUMENT_ROOT"] . '/../contestfiles/';
@@ -39,7 +44,7 @@ if (isset($_POST['upload'])) {
             $max_file_size = 2048000;
 
             $uploadOk = 0; //if this value is 0 the file will not upload. After all check pass it will set to 1. 
-            $fileErrMessage = "<strong>Use your browser's back button and correct the follwoing errors: </strong>";
+            $fileErrMessage = "<strong>Use your browser's back button and correct the following errors: </strong>";
 
             // Check if file already exists
             if (file_exists($target_full)) {
@@ -59,7 +64,8 @@ if (isset($_POST['upload'])) {
             if ($uploadOk == 0) {
                 $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 2 megabytes or less and in PDF format.";
                 $target_file = "empty";
-                exit($fileErrMessage);
+                non_db_error($fileErrMessage);
+                exit($user_err_message . "<br />" . $fileErrMessage);
             } else {
                 // if everything is ok, try to upload file
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_full)) {
@@ -94,7 +100,7 @@ if (isset($_POST['upload'])) {
 SQL;
                     if (!$result = $db->query($sqlInsert)) {
                           db_fatal_error($db->error, "data insert issue- " . $fileErrMessage, $sqlInsert);
-                          exit();
+                          exit($user_err_message);
                     } else {
                         $db->close();
                         unset($_POST['upload']);
@@ -104,13 +110,15 @@ SQL;
                 } else {
                     $target_file = "empty";
                     $fileErrMessage = $fileErrMessage . "Sorry, there was an error uploading your file.";
-                    exit($fileErrMessage . "Sorry, there was an error uploading your file.");
+                    non_db_err($fileErrMessage . "Sorry, there was an error uploading your file.");
+                    exit();
                 }
             }
         } else {
             $target_file = "empty";
             $fileErrMessage = $fileErrMessage . "no file information - ";
-            exit($fileErrMessage . "no file information - ");
+            non_db_error($fileErrMessage . "no file information - ");
+            exit();
         }
 }
 
@@ -129,12 +137,18 @@ SQL;
     if(!$res = $db->query($sqlSelect)){
       db_fatal_error($db->error, "Error: Could not resolve (get) contest name", $sqlSelect);
       exit();
-    } else {
+    } 
+    if ($res->num_rows > 0) {
     // output data of each row
         while ($row = $res->fetch_assoc()) {
             $contestName = $row["name"];
             $contestsID = $row["id"]; //get the tbl_contests id of the contest
         }
+    } else { 
+      //no contest matched ID so go back to index to allow user to reselect a contest
+      non_db_error("no contest matched ID! sent user back to index to allow them to reselect a contest");
+      safeRedirect('index.php');
+      exit();
     }
 
 ?>
@@ -334,7 +348,8 @@ SQL;
 </html>
 <?php
 } else {
-  //no ID in url so go back to index to allow user to reselect a contest
+  //"no ID in url so go back to index to allow user to reselect a contest"
+  non_db_error("no ID in url! sent user back to index to allow them to reselect a contest");
   safeRedirect('index.php');
   exit();
 }

@@ -3,7 +3,6 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
-try {
     $applicantid = htmlspecialchars($_POST["id"]);
     $userFname = $db->real_escape_string(htmlspecialchars($_POST["userFname"]));
     $userLname = $db->real_escape_string(htmlspecialchars($_POST["userLname"]));
@@ -58,18 +57,12 @@ try {
       WHERE id='$applicantid' AND uniqname = '$login_name'
 SQL;
 
-    $result = $db->query($sql);
-    //printf("rows inserted: %d\n", $db->affected_rows);
-    if ($result) {
-      //echo "New record created successfully";
-        safeRedirect('index.php');
-    } else {
-        db_fatal_error($errorMsg, $msg = "ERROR: Update failed", $queryString = $sql);
+    if(!$result = $db->query($sql)){
+        db_fatal_error($db->error, "ERROR: Update failed- " . $login_name, $sql);
+        exit($user_err_message);
     }
-    $result->close;
-    $db->close();
-
-} catch (Exception $e) {
-    $result[] = $e->getMessage();
-}
-exit;
+    //echo "New record created successfully";
+    safeRedirect('index.php');
+    exit();
+$result->close;
+$db->close();

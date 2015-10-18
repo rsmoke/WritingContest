@@ -3,9 +3,11 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
-try {
     $sql = "SELECT * FROM vw_entrydetail WHERE uniqname = '$login_name'";
-    $result = $db->query($sql);
+    if(!$result = $db->query($sql)){
+        db_fatal_error($db->error, "Individual submission- " . $login_name, $sql);
+        exit($user_err_message);
+    }
 
     if ($result->num_rows > 0) {
         echo "<table class='table table-responsive table-condensed'>";
@@ -23,6 +25,3 @@ try {
     }
 
     $db->close();
-} catch (Exception $e) {
-    $errors[] = $e->getMessage();
-}

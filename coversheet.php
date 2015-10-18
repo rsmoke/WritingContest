@@ -3,24 +3,23 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php')
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 $entryid = $db->real_escape_string(htmlspecialchars($_GET["sbmid"]));
 
-try {
-    $sqlSelect = <<<SQL
-  SELECT EntryId,
-    title,
-    uniqname,
-    firstname,
-    lastname,
-    penName,
-    manuscriptType,
-    contestName,
-    datesubmitted
-FROM vw_entrydetail
-WHERE uniqname = '$login_name' AND EntryId = $entryid
+$sqlSelect = <<<SQL
+    SELECT EntryId,
+        title,
+        uniqname,
+        firstname,
+        lastname,
+        penName,
+        manuscriptType,
+        contestName,
+        datesubmitted
+    FROM vw_entrydetail
+    WHERE uniqname = '$login_name' AND EntryId = $entryid
 
 SQL;
     if (!$result = $db->query($sqlSelect)) {
         db_fatal_error($db->error, "data select issue", $sqlSelect);
-        exit;
+        exit($user_err_message);
     }
   //do stuff with your $result set
 
@@ -34,26 +33,22 @@ SQL;
 
         <body>";
 
-        echo "<div style='font-size:.8rem;'>Instructions <br>";
-        echo "<ol>";
-        echo "<li>Follow the instructions related to your specific contest for preparing your submission. See instructions <a href='http://www.lsa.umich.edu/hopwood/contestsprizes' target='_blank'>here</a></li>";
-        echo "<li>Print this page using your browsers print button.</li>";
-        echo "<li>Attach printed Coversheet to your entry.</li>";
+        echo "<div><h1>Entry Submission Details</h1>";
+        echo "<ul>";
+        echo "<li>Contest rules can be found <a href='http://www.lsa.umich.edu/hopwood/contestsprizes' target='_blank'>here</a></li>";
         echo "<li>Use the browser back button to return to your list of entries</li>";
-        echo "</ol></div>";
+        echo "</ul></div>";
         echo "<h1>============================================================</h1>";
-        echo "<h1>Coverpage/Titlesheet</h1>";
         while ($row = $result->fetch_assoc()) {
             echo "<div style='padding: 0 0 0 40px;'>";
-            echo "<div><strong>Entry Title:</strong><h2> " . $row["title"] . "</h2></div>";
+            echo "<h2>Entry Title:</strong> " . $row["title"] . "</h2>";
 
-            echo "<div>Authors Name: " . $row["penName"] ."</div>";
+            echo "<strong>Authors Pen-name:</strong> " . $row["penName"] ."<br />";
 
-            echo "<div>The contest and division entered: " . $row["contestName"] . " - " . $row["manuscriptType"] . "</div>";
+            echo "<strong>The contest and division entered:</strong> " . $row["contestName"] . " - " . $row["manuscriptType"] . "<br />";
 
-            echo "<div>Date Submitted Online: " . $row["datesubmitted"] . "</div>";
+            echo "<strong>Date Submitted Online:</strong> " . $row["datesubmitted"];
 
-            echo "<div style='font-size:.8rem;'>Details : ". $_SERVER["REQUEST_TIME"] . "<=>" . $row["EntryId"] . "</div>";
             echo "</div>";
 
         }
@@ -62,7 +57,4 @@ SQL;
     } else {
         echo "Nothing to show!";
     }
-     $db->close();
-} catch (Exception $e) {
-    $errors[] = $e->getMessage();
-}
+$db->close();

@@ -1,8 +1,4 @@
 <?php
-// Remove comment below to redirect site to temp on-hold page
-// header('location:h-index.php');
-//         exit();
-
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
@@ -16,8 +12,8 @@ $hasApplicantDetails = false;
 SQL;
 
 if (!$result = $db->query($sqlSelect)) {
-        db_fatal_error("data insert issue", $db->error);
-        exit;
+        db_fatal_error($db->error, "data insert issue- " . $login_name, $sqlSelect);
+        exit($user_err_message);
 }
   //do stuff with your $result set
 
@@ -262,7 +258,7 @@ if ($hasApplicantDetails) {
     				    <label for="homeNewspaper">Name of your hometown newspaper</label>
     				    <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />
     				    <label for="penName">Do you have a preferred pen name? <a href="http://www.plot-generator.org.uk/pen-name/" target="_blank"><small>Try the Pen Name Generator</small></a></label>
-    				    <input class="form-control" type="text" tabindex="300" name="penName" placeholder="example: Sarah Bellum" />
+    				    <input class="form-control" type="text" tabindex="300" name="penName" required placeholder="example: Sarah Bellum" />
     				</div>
     			</div>
     		</div>

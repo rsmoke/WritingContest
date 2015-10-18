@@ -4,15 +4,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
 
 $sql = "SELECT * FROM tbl_applicant WHERE uniqname = '$login_name'";
-$result = $db->query($sql);
-
-if ($db->error) {
-    try {
-        throw new Exception("MySQL error $mysqli->error <br> Query:<br> $sql", $db->errno);
-    } catch (Exception $e) {
-        echo "Error No: ".$e->getCode(). " - ". $e->getMessage() . "<br >";
-        echo nl2br($e->getTraceAsString());
-    }
+if (!$result = $db->query($sql)) {
+    db_fatal_error($db->error, "Details Error- ". $login, $sql);
+    exit($user_err_message);
 }
 
 if ($result->num_rows > 0) {
@@ -47,8 +41,8 @@ if ($result->num_rows > 0) {
         $edited_on = $row["edited_on"];
     }
 } else {
-    printf("Connect failed: %s\n", $db->errno);
-    exit();
+    non_db_error("No result for" . $login_name);
+    exit($user_err_message);
 }
 
 $db->close();
@@ -242,7 +236,7 @@ switch ($classLevel) {
               <label for="homeNewspaper">Name of your hometown newspaper</label>
               <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  value="<?php echo $homeNewspaper;?>" placeholder="example: The Times-Argus" />
               <label for="penName">Do you have a preferred pen name? <a href="http://www.plot-generator.org.uk/pen-name/" target="_blank"><small>Try the Pen Name Generator</small></a></label>
-              <input class="form-control" type="text" tabindex="300" name="penName" value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
+              <input class="form-control" type="text" tabindex="300" name="penName" required value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ if (isset($_POST['upload'])) {
         if(!$resApplicant = $db->query($sqlApplicant)){
           unset($_POST['upload']);
           db_fatal_error($db->error, "data lookup issue- " . $login_name, $sqlApplicant);
-          exit();
+          exit($user_err_message);
         } 
         if ($resApplicant->num_rows > 0) {
           // output data of each row
@@ -118,7 +118,7 @@ SQL;
             $target_file = "empty";
             $fileErrMessage = $fileErrMessage . "no file information - ";
             non_db_error($fileErrMessage . "no file information - Username=> " . $login_name);
-            exit();
+            exit($user_err_message);
         }
 }
 
@@ -136,7 +136,7 @@ SQL;
 
     if(!$res = $db->query($sqlSelect)){
       db_fatal_error($db->error, $login_name . " -Error: Could not resolve (get) contest name", $sqlSelect);
-      exit();
+      exit($user_err_message);
     } 
     if ($res->num_rows > 0) {
     // output data of each row

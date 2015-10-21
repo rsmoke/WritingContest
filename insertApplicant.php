@@ -39,7 +39,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     , '$major', '$department', '$gradYearMonth', '$degree', '$finAid', '$finAidDesc', '$namePub'
     , '$homeNewspaper', '$penName', '$login_name', now())
 SQL;
-if (!$db->query($sqlInsert) {
+if (!$db->query($sqlInsert)) {
    db_fatal_error($db->error, "Insert failed- " . $login_name, $sqlInsert);
         exit($user_err_message);
 }

@@ -7,7 +7,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php')
 <head>
   <meta charset="utf-8">
 
-  <title>LSA-<?php echo "$contestTitle";?> Writing Contests</title>
+  <title>LSA-<?php echo "$contestTitle";?> Writing Contests Opens Soon!</title>
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,33 +15,56 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php')
   <meta name="keywords" content="LSA-English, Hopwood, Writing, UniversityofMichigan">
   <meta name="author" content="LSA-MIS_rsmoke">
   <link rel="icon" href="img/favicon.ico">
-
-  <link rel="stylesheet" href="css/bootstrap.min.css"><!-- 3.3.1 -->
-  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="css/default.css" media="all">
+  <style>
+    html { 
+    background: url(img/HopwoodArt.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/HopwoodArt.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/HopwoodArt.jpg', sizingMethod='scale')";
+  }
+  .text-center {
+      color: white;
+      font-weight: bold;
+      text-align: center;
+  }
+  footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+  }
+  a {
+    background-color: white;
+  }
+  </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index.php"><?php echo "$contestTitle";?></a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    </div>
-  </div>
-  </nav>
 
-  <div class="container"><!--Container of all things -->
   <div>
-    <img src="img/HopwoodArt.jpg" alt="HopwoodArt" class="center-block img-responsive">
+    <h1 class="text-center">The Hopwood writing contests will be opening again soon.<br>Please
+    check back.</h1>
   </div>
-    <h4 class="text-center">The Hopwood writing contests will be opening soon.<br>Please
-    check back.</h4>
+<footer>
+  <div class="text-center" >
+    <address>
+      <h3>Department of <?php echo $deptLngName;?></h3>
+      <a href="mailto:<?php echo strtolower($addressEmail);?>"><?php echo strtolower($addressEmail);?></a>
+      <br><?php echo $addressBldg;?>, <?php echo $address2;?>
+      <br><?php echo $addressStreet;?>
+      <br>Ann Arbor, MI
+      <br><?php echo $addressZip;?>
+      <br>P: <?php echo $addressPhone;?>
+      <br>F: <?php echo $addressFax;?>
+    </address>
+      <img class="img" src="img/lsa.png" alt="LSA at the University of Michigan">
   </div>
 
-<?php
-    include("footer.php");?>
-
+  <div class="text-center">
+    <a href="http://www.regents.umich.edu">© 2014 Regents of the University of Michigan</a>
+  </div>
+</footer>
 </body>
 </html>

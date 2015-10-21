@@ -34,7 +34,7 @@ while ($row = $res->fetch_assoc()) {
     $res = $db->query($sql);
 if ($res->num_rows > 0) {
         echo "<table class='table table-responsive table-condensed table-striped'>";
-        echo "<thead><th>Apply</th><th>Contest</th><th>Rules</th></thead><tbody>";
+        echo "<thead><th>Apply</th><th>Contest</th></thead><tbody>";
     while ($row = $res->fetch_assoc()) {
            // if the contest is available to applicants classlevel the database fieldname will be set to 1 (true) and
            //  this test will be true and the contest will be displayed.
@@ -42,9 +42,7 @@ if ($res->num_rows > 0) {
                 echo'<tr><td><button type="button" data-contest-num="' . $row["contestid"] .
                   '" class="btn btn-xs btn-success applyBtn"><span class="glyphicon glyphicon-pencil"></span></button></td><td><strong>' .
                   $row["ContestsName"] . '</strong><br /><span class="notes">' .
-                  $row["contests_notes"] . '</span></td><td><button type="button" data-toggle="modal" data-shortname="' .
-                  $row["shortname"] .
-                  '" data-target="#utility" class="btn btn-xs btn-info eligBtn"><span class="glyphicon glyphicon-info-sign"></span></button></td></tr>';
+                  $row["contests_notes"] . '</span></td></tr>';
         }
     }
         echo "</tbody></table>";

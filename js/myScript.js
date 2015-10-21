@@ -28,21 +28,6 @@ $( document ).ready(function(){
 		$( "input[name ='usrtelH']" ).val( usrtelL );
 	});
 
-	$('#utility').on('show.bs.modal', function (event) {
-	  var button = $(event.relatedTarget); // Button that triggered the modal
-	  var pickRule = button.data('shortname'); // Extract info from data-* attributes
-	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	  var modal = $(this);
-	  modal.find('.modal-body').load( 'eligibiltyRules.html #' + pickRule, function(response, status, xhr) {
-                if (status == 'error') {
-                    //console.log('got here');
-                    $('#utility_body').html('<h2>Oh boy</h2><p>Sorry, but there was an error:' + xhr.status + ' ' + xhr.statusText+ '</p>');
-                }
-            }
-        );
-	});
-
 	$('#availableEntry').on('click', '.applyBtn', function ( event ){
 		//var useAppTemplate = $(this).data('app-template'); // application template to use
 		var useAppTemplate = 'applicationForm';

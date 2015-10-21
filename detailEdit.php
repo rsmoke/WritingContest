@@ -235,7 +235,7 @@ switch ($classLevel) {
               <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $namePub;?>" />
               <label for="homeNewspaper">Name of your hometown newspaper</label>
               <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  value="<?php echo $homeNewspaper;?>" placeholder="example: The Times-Argus" />
-              <label for="penName">Do you have a preferred pen name? <a href="http://www.plot-generator.org.uk/pen-name/" target="_blank"><small>Try the Pen Name Generator</small></a></label>
+              <label for="penName">Enter a preferred pen name?</label>
               <input class="form-control" type="text" tabindex="300" name="penName" required value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
           </div>
         </div>

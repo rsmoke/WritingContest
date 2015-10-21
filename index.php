@@ -257,7 +257,7 @@ if ($hasApplicantDetails) {
     				    <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $userName[0] . " " . $userName[1];?>"/>
     				    <label for="homeNewspaper">Name of your hometown newspaper</label>
     				    <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />
-    				    <label for="penName">Do you have a preferred pen name? <a href="http://www.plot-generator.org.uk/pen-name/" target="_blank"><small>Try the Pen Name Generator</small></a></label>
+    				    <label for="penName">Enter a preferred pen name?</label>
     				    <input class="form-control" type="text" tabindex="300" name="penName" required placeholder="example: Sarah Bellum" />
     				</div>
     			</div>

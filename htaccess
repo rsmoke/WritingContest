@@ -1,7 +1,14 @@
 #WritingContest Site Security
 #Web Space Restriction Description
-# Provide Specific Index Page (Set the default handler) to redirect when contest is closed
-DirectoryIndex closed-index.php
+
+# MAINTENANCE-PAGE REDIRECT
+<IfModule mod_rewrite.c>
+ RewriteEngine on
+ RewriteCond %{REMOTE_ADDR} !^141\.211\.136\.222
+ RewriteCond %{REQUEST_URI} !/closed-index.php$ [NC]
+ RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+ RewriteRule .* /DEV-WritingContest/closed-index.php [R=302,L]
+</IfModule>
 
 CosignProtected On
 AuthType Cosign
@@ -9,3 +16,5 @@ CosignRequireFactor   UMICH.EDU
 SSLRequireSSL
 AuthLDAPURL ldap://ldap.umich.edu
 #Require ldap-group cn=hopwoodContestAdmins,ou=User Groups,ou=Groups,dc=umich,dc=edu
+Require ldap-group cn=DEV-quill-hopwoodUsers,ou=User Groups,ou=Groups,dc=umich,dc=edu
+#Require user <username>

@@ -1,5 +1,7 @@
 #WritingContest Site Security
 #Web Space Restriction Description
+# Provide Specific Index Page (Set the default handler) to redirect when contest is closed
+DirectoryIndex closed-index.php
 
 CosignProtected On
 AuthType Cosign
@@ -7,13 +9,3 @@ CosignRequireFactor   UMICH.EDU
 SSLRequireSSL
 AuthLDAPURL ldap://ldap.umich.edu
 #Require ldap-group cn=hopwoodContestAdmins,ou=User Groups,ou=Groups,dc=umich,dc=edu
-
-
-#Delete on 070115
-#====================
-#CosignProtected On
-#AuthType Cosign
-#Require valid-user
-#CosignRequireFactor   UMICH.EDU
-#Require ldap-group cn=hopwoodContestAdmins,ou=User Groups,ou=Groups,dc=umich,dc=edu
-#====================

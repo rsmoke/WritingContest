@@ -41,7 +41,7 @@ if (isset($_POST['upload'])) {
             $target_full = $target_dir . $target_file;
             $ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
             $fileType = $_FILES['fileToUpload']['type'];
-            $max_file_size = 2048000;
+            $max_file_size = 6144000; //6M
 
             $uploadOk = 0; //if this value is 0 the file will not upload. After all check pass it will set to 1. 
             $fileErrMessage = "<strong>Use your browser's back button and correct the following errors: </strong>";
@@ -62,7 +62,7 @@ if (isset($_POST['upload'])) {
             }
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
-                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 2 megabytes or less and in PDF format.";
+                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 6 megabytes or less and in PDF format.";
                 $target_file = "empty";
                 non_db_error($fileErrMessage . "Username=> " . $login_name);
                 exit($user_err_message . "<br />" . $fileErrMessage);

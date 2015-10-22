@@ -37,7 +37,7 @@ if (isset($_POST['upload'])) {
         if ((!empty($_FILES["fileToUpload"])) && ($_FILES['fileToUpload']['error'] == 0) && (strlen(basename($_FILES["fileToUpload"]["name"])) < 250)) {
             $target_dir = $_SERVER["DOCUMENT_ROOT"] . '/../contestfiles/';
             $filename = basename($_FILES["fileToUpload"]["name"]);
-            $target_file = getUTCTime() . "_" . $filename . "_" . $login_name;
+            $target_file = getUTCTime() . "_" . $filename;
             $target_full = $target_dir . $target_file;
             $ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
             $fileType = $_FILES['fileToUpload']['type'];

@@ -38,6 +38,8 @@ if (isset($_POST['upload'])) {
             $target_dir = $_SERVER["DOCUMENT_ROOT"] . '/../contestfiles/';
             $filename = basename($_FILES["fileToUpload"]["name"]);
             $target_file = getUTCTime() . "_" . $filename;
+            //added 111215 to fix upload error due to special chars in name
+            $target_file = $db->real_escape_string(htmlspecialchars($target_file));
             $target_full = $target_dir . $target_file;
             $ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
             $fileType = $_FILES['fileToUpload']['type'];

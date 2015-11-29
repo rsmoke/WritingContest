@@ -92,9 +92,9 @@ if ($resJudge->num_rows > 0) {
   <div class="row clearfix">
     <div class="col-md-12">
 
-      <div class="btn-toolbar pagination-centered" role="toolbar" aria-label="admin_button_toolbar">
+      <div class="btn-toolbar pagination-centered" role="toolbar" aria-label="judge_button_toolbar">
       <div class="btn-group" role="group" aria-label="contest_applicant">
-        <button id="admContestBtn" type="button" class="btn btn-primary">Contest</button>
+        <button id="jdgContestBtn" type="button" class="btn btn-primary">Contest</button>
         <!-- <button id="admApplicantBtn" type="button" class="btn btn-primary">Applicant</button> -->
       </div>
       </div>
@@ -208,78 +208,6 @@ if (!$resultsInd) {
   </div>
 </div>
 
-<div id="applicant">
-  <div class="row clearfix">
-    <div class="col-md-12">
-    <h5 class="text-muted">Please select an applicant</h5>
-    <p>By clicking on the applicants Pen-name you can read their complete submission</p>
-    <span id="allApplicants">
-        <?php
-          $resApp = $db->query("SELECT penName, id FROM tbl_applicant ORDER BY penName");
-        while ($row = $resApp->fetch_assoc()) {
-            echo '<div class="record" id="record-' . $row['id'] . '"><strong>' . $row['penName'] .'</strong></div>';
-        }
-        ?>
-    </span>
-
-    </div>
-  </div>
-</div>
-
-<div id="manuscript_type">
-  <div class="row clearfix">
-    <div class="col-md-12">
-      <span class="allManuscripts">
-            <?php
-            $resManuscript = $db->query("SELECT * FROM lk_category ORDER BY name");
-            while ($row = $resManuscript->fetch_assoc()) {
-                echo '<div class="record" id="record-' . $row['id'] . '">
-              <strong>' . $row['name'] .'</strong>  -- ' . $row['desc'] . '</div>';
-            }
-        ?>
-      </span>
-    </div>
-  </div>
-</div>
-
-<div id="contests">
-  <div class="row clearfix">
-    <div class="col-md-12">
-    <div class="btn-toolbar" role="toolbar" aria-label="contest_button_toolbar">
-      <div class="btn-group" role="group" aria-label="contests_management">
-        <button id="addContest" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="Click to create a new instance of one of the contests listed below">Add New Contest Instance</button>
-        <!-- <button id="addContestsType" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="Click to create a new contests area">Add New Contest Type</button> -->
-      </div>
-      </div>
-      <span class="allContests">
-        <?php
-          $resContests = $db->query("SELECT * FROM lk_contests ORDER BY name");
-        while ($row = $resContests->fetch_assoc()) {
-            echo '<div class="record" id="contests">
-            <strong><span data-contestsid="' . $row['id'] . '" class="btn btn-link editBtn" type="button">' . $row['name'] .'</span></strong>  -- ' . $row['contests_notes'] . '</div>';
-        }
-        ?>
-    </span>
-    <br>
-    <span class="allOpenContests">
-    <h5>These are the currently open contests</h5>
-        <?php
-          $resOpenContests = $db->query("SELECT * FROM vw_contestlisting ORDER BY ContestsName");
-        if (!$resOpenContests) {
-            echo "There are no open contests";
-        } else {
-            while ($instance = $resOpenContests->fetch_assoc()) {
-                echo '<div class="record"><strong>' . $instance['ContestsName'] . '</strong> Opened: ' . $instance['date_open'] . ' - Closes: ' . $instance['date_closed'] . '</div>';
-            }
-        }
-        ?>
-    </span>
-
-    </div>
-  </div>
-</div>
-
-
 <div id="output">
   <div class="row clearfix">
     <div class="col-md-12">
@@ -320,7 +248,7 @@ if (!$resultsInd) {
 }
     include("../footer.php");?>
     <!-- //additional script specific to this page -->
-      <script src="ADMIN/admJS/admMyScript.js"></script>
+      <script src="judging/jdgJS/jdgMyScript.js"></script>
 </div><!-- End Container of all things -->
 </body>
 </html>

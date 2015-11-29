@@ -43,7 +43,7 @@ if (isset($_POST['upload'])) {
             $target_full = $target_dir . $target_file;
             $ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
             $fileType = $_FILES['fileToUpload']['type'];
-            $max_file_size = 6144000; //6M
+            $max_file_size = 20971520; //20M
 
             $uploadOk = 0; //if this value is 0 the file will not upload. After all check pass it will set to 1. 
             $fileErrMessage = "<strong>Use your browser's back button and correct the following errors: </strong>";
@@ -57,14 +57,14 @@ if (isset($_POST['upload'])) {
                 $fileErrMessage = $fileErrMessage . " <br />=>Sorry, your file was too large.";
             }
             // Allow only pdf file format and change uploadOK to 1 if TRUE
-            if (($fileType == "application/pdf") && ($ext == 'pdf')) {
+            if ((($fileType == "application/pdf") || ($fileType == "application/vnd.adobe.pdf")) && ($ext == 'pdf')) {
                 $uploadOk = 1;
             } else {
                 $fileErrMessage = $fileErrMessage . " <br />=>Sorry, only PDF files are allowed. This is a " . $fileType . " with the extension of " . $ext;
             }
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
-                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 6 megabytes or less and in PDF format.";
+                $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 20 megabytes or less and in PDF format.";
                 $target_file = "empty";
                 non_db_error($fileErrMessage . "Username=> " . $login_name);
                 exit($user_err_message . "<br />" . $fileErrMessage);

@@ -4,6 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+$entryid = $db->real_escape_string(htmlspecialchars($_GET["sbmid"]));
 
 $isJudge = false;
 $_SESSION['isJudge'] = false;
@@ -25,6 +26,25 @@ if ($resJudge->num_rows > 0) {
     $_SESSION['isJudge'] = true;
 }
 
+$sqlSelect = <<<SQL
+    SELECT EntryId,
+        title,
+        document,
+        penName,
+        manuscriptType,
+        contestName,
+        datesubmitted
+    FROM vw_entrydetail
+    WHERE EntryId = $entryid
+
+SQL;
+    if (!$result = $db->query($sqlSelect)) {
+        db_fatal_error($db->error, "data select issue", $sqlSelect);
+        exit($user_err_message);
+    }
+  //do stuff with your $result set
+
+    if ($result->num_rows > 0) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,133 +111,65 @@ if ($resJudge->num_rows > 0) {
   <div class="container"><!-- container of all things -->
   <div class="row clearfix">
     <div class="col-md-12">
-
-      <div class="btn-toolbar pagination-centered" role="toolbar" aria-label="judge_button_toolbar">
-      <div class="btn-group" role="group" aria-label="contest_applicant">
-        <button id="jdgContestBtn" type="button" class="btn btn-primary">Contest</button>
-        <!-- <button id="admApplicantBtn" type="button" class="btn btn-primary">Applicant</button> -->
-      </div>
-      </div>
-    </div>
-  </div>
-
-<div id="initialView">
-  <div class="row clearfix">
-    <div class="col-md-12">
-    <div><img src="ADMIN/admIMG/IMG_0970.jpg" class="img img-responsive center-block" width="571" height="304" alt="Hopwood Image"></div>
-    </div>
-  </div>
-</div>
-
-<div id="contest">
-  <div class="row clearfix">
-    <div class="col-md-12">
-    <h5 class="text-muted">Select a contest that you want to view</h5>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-<?php
-//query for existing contests and populate the panels
-$sqlContestSelect = <<<SQL
-        SELECT
-            `tbl_contest`.`id` AS ContestId,
-            `tbl_contest`.`date_open`,
-            `tbl_contest`.`date_closed`,
-            `tbl_contest`.`notes` AS ContestNotes,
-            `tbl_contest`.`created_by`,
-            `tbl_contest`.`judgingOpen`,
-            `lk_contests`.`name`,
-            `lk_contests`.`shortName`,
-            `lk_contests`.`freshmanEligible`,
-            `lk_contests`.`sophmoreEligible`,
-            `lk_contests`.`juniorEligible`,
-            `lk_contests`.`seniorEligible`,
-            `lk_contests`.`graduateEligible`
-
-        FROM tbl_contest
-        JOIN `lk_contests` ON ((`tbl_contest`.`contestsID` = `lk_contests`.`id`))
-        WHERE `tbl_contest`.`judgingOpen` = 1
-        ORDER BY `tbl_contest`.`date_closed`,`lk_contests`.`name`
-
-SQL;
-
-$results = $db->query($sqlContestSelect);
-if (!$results) {
-    echo "There is no contest information available";
-} else {
-    $count = $i = 0;
-    while ($instance = $results->fetch_assoc()) {
-        $count = $i++;
-?>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="heading<?php echo $count ?>">
-          <h6 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $count ?>" aria-expanded="false" aria-controls="collapse<?php echo $count ?>">
-                <?php echo $instance['name'] . " <br /><small>closed: </small><span style='color:#0080FF'>" . date_format(date_create($instance['date_closed']),"F jS Y \a\\t g:ia") . "</span>" ?>
-            </a>
-          </h6>
+        <div>
+            <h1>Evaluation</h1>
+             <ul>
+             <li>Contest rules can be found <a href='http://www.lsa.umich.edu/hopwood/contestsprizes' target='_blank'>here</a></li>
+             </ul>
         </div>
-        <div id="collapse<?php echo $count ?>" class="panel-collapse" role="tabpanel" aria-labelledby="heading<?php echo $count ?>">
-          <div class="panel-body">
-             <div class="well well-sm">Eligibility: 
-                <?php
-                echo($instance['freshmanEligible'])? "Fr " : "";
-                echo($instance['sophmoreEligible'])? "So " : "";
-                echo($instance['juniorEligible'])? "Jr " : "";
-                echo($instance['seniorEligible'])? "Sr " : "";
-                echo($instance['graduateEligible'])? "Grd " : "";
-                ?>
-             </div>
-             <div class="table-responsive">
-              <table class="table table-hover table-condensed">
-                <thead>
-                <tr>
-                  <th>Evaluate</th><th>Title</th><th>written by<br/><small>Pen Name</small></th><th>Manuscript Type</th><th>Date Entered</th><th>AppID</th>
-                  </tr>
-                </thead>
-                <tbody>
-<?php
-$sqlIndEntry = <<<SQL
-    SELECT *
-    FROM vw_entrydetail
-    WHERE ContestInstance = {$instance['ContestId']}
 
-SQL;
-$resultsInd = $db->query($sqlIndEntry);
-if (!$resultsInd) {
-    echo "There are no applicants available";
-} else {
-    while ($entry = $resultsInd->fetch_assoc()) {
-        echo '<tr><td><button class="btn btn-sm btn-info btn-eval" data-entryid="' . $entry['EntryId'] . '"><span class="glyphicon glyphicon-list-alt"></span></button></td><td>' . $entry['title'] . '</td><td>' . $entry['penName'] . '</td><td>' . $entry['manuscriptType'] . '</td><td>' . date_format(date_create($entry['datesubmitted']),"F jS Y \a\\t g:ia") . '</td><td><small>' . $entry['EntryId'] . '</small></td></tr>';
-    }
-}
+         <hr>
+<?php
+        while ($row = $result->fetch_assoc()) {
+            echo "<div style='padding: 0 0 0 40px;'>";
+            echo "<strong>Entry Title: </strong><mark>" . $row["title"] . "</mark>  <br />";
+
+            echo '<a href="' . $_SERVER["DOCUMENT_ROOT"] . '/../contestfiles/' . $row['document'] . '">Read</a><br /><br />';
+
+            echo "<strong>Authors Pen-name:</strong> " . $row["penName"] ."<br />";
+
+            echo "<strong>The contest and division entered:</strong> " . $row["contestName"] . " - " . $row["manuscriptType"] . "<br />";
+
+            echo '<strong>Date Submitted Online:</strong> ' . date_format(date_create($row["datesubmitted"]),"F jS Y \a\\t g:ia") . '<br />';
+
+            echo "</div>";
+
+        }
+        echo "<hr>";
 
 ?>
-  
-                </tbody>
-              </table>
-            </div>
+        <form>
+        <?php echo "<small>" . $entryid . "</small>"; ?>
+          <div class="radio">
+          Rating:<br />
+            <label class="radio-inline">
+              <input type="radio" name="evalRadio" id="evalRadio1" value="1" required> 1
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="evalRadio" id="evalRadio2" value="2"> 2
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="evalRadio" id="evalRadio3" value="3"> 3
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="evalRadio" id="evalRadio4" value="4"> 4
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="evalRadio" id="evalRadio5" value="5"> 5
+            </label>
+            <br />( 1=Lowest rating  to 5=Highest rating )
           </div>
-        </div>
-      </div>
+          <div class="form-group">
+            <label for="evalComments">Comments</label>
+            <textarea class="form-control" id="evalComments" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
 <?php
+    } else {
+        echo "Nothing to show!";
     }
-}
-?>
-    </div>
-    </div>
-  </div>
-</div>
 
-<div id="output">
-  <div class="row clearfix">
-    <div class="col-md-12">
-
-      <span id="outputData"></span>
-    </div>
-  </div>
-</div>
-
-    <?php
 } else {
 ?>
 

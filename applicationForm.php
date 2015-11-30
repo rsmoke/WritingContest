@@ -330,7 +330,7 @@ SQL;
           </div>
 
           <label for="fileToUpload">Select file to upload (it must be in PDF format):</label>
-          <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+          <input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
           <input type="file" name="fileToUpload" id="fileToUpload" required />
 
           <div class='text-center'>

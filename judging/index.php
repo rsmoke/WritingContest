@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 $isJudge = false;
-$_SESSION['isJudge'] = false;
+$_SESSION["isJudge"] = 0;
 
 $sql = <<< _SQL
   SELECT *
@@ -22,7 +22,7 @@ if (!$resJudge = $db->query($sql)) {
 
 if ($resJudge->num_rows > 0) {
     $isJudge = true;
-    $_SESSION['isJudge'] = true;
+    $_SESSION["isJudge"] = 1;
 }
 
 ?>
@@ -93,7 +93,7 @@ if ($resJudge->num_rows > 0) {
 <div id="contest">
   <div class="row clearfix">
     <div class="col-md-12">
-    <h5 class="text-muted">Select an entry that you want to evaluate</h5>
+    <h5 class="text-muted">Select an entry that you want to evaluate. Entries that you have evaluated will be disabled (greyed out).</h5>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
 <?php
@@ -218,7 +218,7 @@ if (!$resultsInd) {
 
     <?php
 }
-    include("../footer.php");?>
+    include("footer.php");?>
     <!-- //additional script specific to this page -->
       <script src="judging/jdgJS/jdgMyScript.js"></script>
 </div><!-- End Container of all things -->

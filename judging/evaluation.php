@@ -4,6 +4,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+// echo '<p>' . print_r($_SESSION) . '</p>';
+// echo '<p>' . $_SERVER["PHP_SELF"] . '</p>';
 
 if (isset($_POST["evaluate"]) && ($_SESSION["isJudge"])){
     //scrub data
@@ -19,14 +21,15 @@ if (isset($_POST["evaluate"]) && ($_SESSION["isJudge"])){
         `rating`,
         `comment`,
         `entry_id`)
-        VALUES 
-        ($evaluator,
+        VALUES
+        ('$evaluator',
         $evalRadio,
-        $evalComment,
+        '$evalComment',
         $entryid)
 SQL;
+echo $sqlInsert;
     if (!$result = $db->query($sqlInsert)) {
-          db_fatal_error($db->error, $login_name . " -data insert issue- " . $fileErrMessage, $sqlInsert);
+          db_fatal_error($db->error, $login_name . " -data insert issue- " . $sqlInsert);
           exit($user_err_message);
     } else {
         $db->close();
@@ -39,24 +42,6 @@ SQL;
 
 
 $entryid = $db->real_escape_string(htmlspecialchars($_GET["evid"]));
-// $isJudge = false;
-// $_SESSION['isJudge'] = false;
-
-// $sql = <<< _SQL
-//   SELECT *
-//   FROM tbl_contestjudge
-//   WHERE uniqname = '$login_name'
-//   ORDER BY uniqname
-// _SQL;
-
-// if (!$resJudge = $db->query($sql)) {
-//         db_fatal_error("data read issue", $db->error);
-//         exit;
-// }
-
-// if ($resJudge->num_rows > 0) {
-//     $isJudge = true;
-//     $_SESSION['isJudge'] = true;
 
 $sqlSelect = <<<SQL
     SELECT EntryId,
@@ -138,7 +123,7 @@ SQL;
           </div>
         </nav>
 
-    <?php if ($_SESSION['isJudge']) {
+    <?php if ($_SESSION["isJudge"]) {
         ?>
   <div class="container"><!-- container of all things -->
   <div class="row clearfix">
@@ -170,7 +155,7 @@ SQL;
         echo "<hr>";
 
 ?>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <form action="http://writingcontest.dev<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
          <input type="hidden" name="evaluator" value=" <?php echo  $login_name; ?> ">
          <input type="hidden" name="entryid" value=" <?php echo  $entryid; ?> ">
           <div class="radio">
@@ -231,7 +216,7 @@ SQL;
 
     <?php
 }
-    include("../footer.php");?>
+    include("footer.php");?>
     <!-- //additional script specific to this page -->
       <script src="judging/jdgJS/jdgMyScript.js"></script>
 </div><!-- End Container of all things -->

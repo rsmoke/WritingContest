@@ -89,30 +89,11 @@ if ($resJudge->num_rows > 0) {
     <?php if ($isJudge) {
         ?>
   <div class="container"><!-- container of all things -->
-  <div class="row clearfix">
-    <div class="col-md-12">
-
-      <div class="btn-toolbar pagination-centered" role="toolbar" aria-label="judge_button_toolbar">
-      <div class="btn-group" role="group" aria-label="contest_applicant">
-        <button id="jdgContestBtn" type="button" class="btn btn-primary">Contest</button>
-        <!-- <button id="admApplicantBtn" type="button" class="btn btn-primary">Applicant</button> -->
-      </div>
-      </div>
-    </div>
-  </div>
-
-<div id="initialView">
-  <div class="row clearfix">
-    <div class="col-md-12">
-    <div><img src="ADMIN/admIMG/IMG_0970.jpg" class="img img-responsive center-block" width="571" height="304" alt="Hopwood Image"></div>
-    </div>
-  </div>
-</div>
 
 <div id="contest">
   <div class="row clearfix">
     <div class="col-md-12">
-    <h5 class="text-muted">Select a contest that you want to view</h5>
+    <h5 class="text-muted">Select an entry that you want to evaluate</h5>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
 <?php
@@ -204,15 +185,6 @@ if (!$resultsInd) {
 }
 ?>
     </div>
-    </div>
-  </div>
-</div>
-
-<div id="output">
-  <div class="row clearfix">
-    <div class="col-md-12">
-
-      <span id="outputData"></span>
     </div>
   </div>
 </div>

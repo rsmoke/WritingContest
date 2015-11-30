@@ -4,27 +4,59 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$entryid = $db->real_escape_string(htmlspecialchars($_GET["sbmid"]));
 
-$isJudge = false;
-$_SESSION['isJudge'] = false;
+if (isset($_POST["evaluate"]) && ($_SESSION["isJudge"])){
+    //scrub data
+    $evaluator = htmlspecialchars(($_POST["evaluator"]));
+    $evalRadio = htmlspecialchars(($_POST["evalRadio"]));
+    $evalComment = htmlspecialchars(($_POST["evalComments"]));
+    $entryid = htmlspecialchars(($_POST["entryid"]));
 
-$sql = <<< _SQL
-  SELECT *
-  FROM tbl_contestjudge
-  WHERE uniqname = '$login_name'
-  ORDER BY uniqname
-_SQL;
-
-if (!$resJudge = $db->query($sql)) {
-        db_fatal_error("data read issue", $db->error);
-        exit;
+    //insert eval into table
+    $sqlInsert = <<<SQL
+    INSERT INTO `tbl_evaluations`
+        (`evaluator`,
+        `rating`,
+        `comment`,
+        `entry_id`)
+        VALUES 
+        ($evaluator,
+        $evalRadio,
+        $evalComment,
+        $entryid)
+SQL;
+    if (!$result = $db->query($sqlInsert)) {
+          db_fatal_error($db->error, $login_name . " -data insert issue- " . $fileErrMessage, $sqlInsert);
+          exit($user_err_message);
+    } else {
+        $db->close();
+        unset($_POST['evaluate']);
+        $evaluator = $evalRadio = $evalComment = $entryid = null;
+        safeRedirect('index.php');
+        exit();
+    }
 }
 
-if ($resJudge->num_rows > 0) {
-    $isJudge = true;
-    $_SESSION['isJudge'] = true;
-}
+
+$entryid = $db->real_escape_string(htmlspecialchars($_GET["evid"]));
+// $isJudge = false;
+// $_SESSION['isJudge'] = false;
+
+// $sql = <<< _SQL
+//   SELECT *
+//   FROM tbl_contestjudge
+//   WHERE uniqname = '$login_name'
+//   ORDER BY uniqname
+// _SQL;
+
+// if (!$resJudge = $db->query($sql)) {
+//         db_fatal_error("data read issue", $db->error);
+//         exit;
+// }
+
+// if ($resJudge->num_rows > 0) {
+//     $isJudge = true;
+//     $_SESSION['isJudge'] = true;
 
 $sqlSelect = <<<SQL
     SELECT EntryId,
@@ -106,7 +138,7 @@ SQL;
           </div>
         </nav>
 
-    <?php if ($isJudge) {
+    <?php if ($_SESSION['isJudge']) {
         ?>
   <div class="container"><!-- container of all things -->
   <div class="row clearfix">
@@ -138,8 +170,9 @@ SQL;
         echo "<hr>";
 
 ?>
-        <form>
-        <?php echo "<small>" . $entryid . "</small>"; ?>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+         <input type="hidden" name="evaluator" value=" <?php echo  $login_name; ?> ">
+         <input type="hidden" name="entryid" value=" <?php echo  $entryid; ?> ">
           <div class="radio">
           Rating:<br />
             <label class="radio-inline">
@@ -161,9 +194,9 @@ SQL;
           </div>
           <div class="form-group">
             <label for="evalComments">Comments</label>
-            <textarea class="form-control" id="evalComments" required></textarea>
+            <textarea class="form-control" id="evalComments" name="evalComments" required></textarea>
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success" name="evaluate">Submit Evaluation</button>
         </form>
 <?php
     } else {

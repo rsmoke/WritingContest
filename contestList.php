@@ -29,8 +29,8 @@ while ($row = $res->fetch_assoc()) {
 }
 
 
-
-    $sql = "SELECT * FROM vw_contestlisting";
+    echo $current_timestamp = date('Y-m-d G:i:s');
+    $sql = "SELECT * FROM vw_contestlisting WHERE date_closed > '$current_timestamp'";
     $res = $db->query($sql);
 if ($res->num_rows > 0) {
         echo "<table class='table table-responsive table-condensed table-striped'>";

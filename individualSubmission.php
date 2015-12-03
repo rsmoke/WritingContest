@@ -3,7 +3,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
-    $sql = "SELECT * FROM vw_entrydetail WHERE uniqname = '$login_name'";
+    $sql = "SELECT * FROM vw_entrydetail WHERE uniqname = '$login_name' AND status = 0";
     if(!$result = $db->query($sql)){
         db_fatal_error($db->error, "Individual submission- " . $login_name, $sql);
         exit($user_err_message);

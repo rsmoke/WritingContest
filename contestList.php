@@ -30,7 +30,7 @@ while ($row = $res->fetch_assoc()) {
 
 //    $sql = "SELECT * FROM vw_contestlisting";
 //limit contestlisting to currently open constest 120215
-
+    $current_timestamp = date('Y-m-d G:i:s');
     $sql = "SELECT * FROM vw_contestlisting WHERE date_closed > '$current_timestamp'";
 
     $res = $db->query($sql);

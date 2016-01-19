@@ -262,7 +262,7 @@ if ($hasApplicantDetails) {
                         <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $userName[0] . " " . $userName[1];?>"/>
                         <label for="homeNewspaper">Name of your hometown newspaper</label>
                         <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />
-                        <label for="penName">Enter a preferred pen name?</label>
+                        <label for="penName">Enter a preferred pen name? (Do not use your real name)</label>
                         <input class="form-control" type="text" tabindex="300" name="penName" required placeholder="example: Sarah Bellum" />
                     </div>
                 </div>

@@ -232,7 +232,7 @@ SQL;
         case 3:
               echo '<div id="hopwoodTemplate">';
                 echo '<h5>ACADEMICS</h5>';
-                echo '<h6>Please email a copy of your unofficial transcript to the Hopwood Contest Office dropbox at <a href="mailto:upload.Hopwood.ud0jm0juon@u.box.com" target="_blank">upload.Hopwood.ud0jm0juon@u.box.com</a>'
+                echo '<h6>Please email a copy of your unofficial transcript to the Hopwood Contest Office dropbox at <a href="mailto:upload.Hopwood.ud0jm0juon@u.box.com" target="_blank">upload.Hopwood.ud0jm0juon@u.box.com</a>';
                 echo '<label for="courseNameNumber">Qualifying Course (DEPARTMENT AND COURSE #)</label>';
                 echo '<input class="form-control" type="text" required name="courseNameNum" placeholder="example: eng216" />';
                 echo '<label for="instrName">Name of Instructor</label>';

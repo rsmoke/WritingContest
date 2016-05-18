@@ -16,8 +16,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php')
   <meta name="author" content="LSA-MIS_rsmoke">
   <link rel="icon" href="img/favicon.ico">
   <style>
-    html { 
-    background: url(img/HopwoodArt.jpg) no-repeat center center fixed; 
+    html {
+    background: url(img/HopwoodArt.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -31,6 +31,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php')
       text-align: center;
   }
   footer {
+    font-size: .8rem;
       position: fixed;
       bottom: 10px;
       width: 100%;

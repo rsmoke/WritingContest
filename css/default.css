@@ -2,7 +2,7 @@
   fieldset { display: table-cell; }
 }
 
-body { 
+body {
 	padding-top: 70px;
 }
 
@@ -30,24 +30,24 @@ li {
 
 footer {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: .6em; 
+	font-size: .6em;
 	color: #5e8bac;
 	line-height:12px;
-	background-color: #ddd;	
+	background-color: #ddd;
 	padding-top: .3em;
 }
 
 footer a img {
 	border: 0px;
 	}
-	
+
 footer a {
-	color: #5e8bac; 
+	color: #5e8bac;
 	text-decoration: none;
 	}
 
 footer a:hover {
-	background-color: transparent; 
+	background-color: transparent;
 	text-decoration: underline;
 }
 

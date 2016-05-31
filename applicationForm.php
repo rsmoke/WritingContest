@@ -331,11 +331,12 @@ SQL;
     };
             ?>
           </div>
-
-          <label for="fileToUpload">Select file to upload (it must be in PDF format):</label>
-          <input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
-          <input type="file" name="fileToUpload" id="fileToUpload" required />
-
+          <div class="form-group fileUpload-group">
+            <label class="control-label" for="fileToUpload">Select file to upload (it must be in PDF format):</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
+            <input type="file" name="fileToUpload" id="fileToUpload" required />
+            <span id="helpBlock2" class="help-block">Title (or first) page of pdf should be <strong><em>title of your manuscript, pen-name</em></strong> and <strong><em>area</em></strong> only.</span>
+          </div>
           <div class='text-center'>
           <input class="btn btn-success" type="submit" name="upload" value="Upload Application">
           </div>

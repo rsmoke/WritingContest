@@ -49,4 +49,14 @@ $( document ).ready(function(){
     });
 });
 
+  $('#applicantPenName').blur(function() {
+    if ($('#applicantPenName').val() == $('#applicantFname').val() + ' ' + $('#applicantLname').val()){
+      alert( "NOTE: Do not use your real name as a pen-name!" );
+      $('#applyBasicInfo').prop('disabled', true);
+    } else {
+      $('#applyBasicInfo').prop('disabled', false);
+    };
+  });
+
+
 });

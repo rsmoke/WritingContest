@@ -136,7 +136,7 @@ if ($hasApplicantDetails) {
                     <li>Select the details button next to your entry below, <i>it looks like this</i> ( <span class="btn btn-warning btn-xs" disabled="disabled"><span class="glyphicon glyphicon-file"></span></span> ), to view the complete details of your entry submission.</li>
                     </ol>
                     <ul>
-                    
+
                     <li><i>NOTE: You will need to upload a separate application for each genre in the Hopwood Contest and poem in the Rapaport Contest.</i></li>
                     </ul>
                     <ul>
@@ -164,7 +164,7 @@ if ($hasApplicantDetails) {
                         <div id="currentEntry"></div>
                     </div>
                 </div>
-            </div>          
+            </div>
 
 <?php
 } else {
@@ -179,9 +179,9 @@ if ($hasApplicantDetails) {
 
                         <h5>NAME:</h5>
                         <label for="userFname" >First name</label>
-                        <input class="form-control" type="text" tabindex="100" required name="userFname" value="<?php echo $userName[0];?>" autofocus />
+                        <input id="applicantFname" class="form-control" type="text" tabindex="100" required name="userFname" value="<?php echo $userName[0];?>" autofocus />
                         <label for="userLname">Last name</label>
-                        <input class="form-control" type="text" tabindex="110"required name="userLname" value="<?php echo $userName[1];?>" />
+                        <input id="applicantLname" class="form-control" type="text" tabindex="110"required name="userLname" value="<?php echo $userName[1];?>" />
                         <label for="umid">UMID</label>
                         <input class="form-control" type="text" placeholder="enter your 8 digit UMID - example: 12345678" tabindex="120" required name="umid" pattern="(^\d{8}$)" title="enter an 8 digit UMID" />
                         <label for="emailAddress">Campus eMail<br />
@@ -263,7 +263,7 @@ if ($hasApplicantDetails) {
                         <label for="homeNewspaper">Name of your hometown newspaper</label>
                         <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />
                         <label for="penName">Enter a preferred pen name? (Do not use your real name)</label>
-                        <input class="form-control" type="text" tabindex="300" name="penName" required placeholder="example: Sarah Bellum" />
+                        <input id="applicantPenName" class="form-control" type="text" tabindex="300" name="penName" required placeholder="example: Sarah Bellum" />
                     </div>
                 </div>
             </div>

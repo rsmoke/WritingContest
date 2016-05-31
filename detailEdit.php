@@ -150,9 +150,9 @@ switch ($classLevel) {
               <input type="hidden" required name="id" value="<?php echo $applicantID;?>" />
               <h5>NAME:</h5>
               <label for="userFname" >First name</label>
-              <input class="form-control" type="text" tabindex="100" required name="userFname" value="<?php echo $userFname;?>" autofocus />
+              <input id="applicantFname" class="form-control" type="text" tabindex="100" required name="userFname" value="<?php echo $userFname;?>" autofocus />
               <label for="userLname">Last name</label>
-              <input class="form-control" type="text" tabindex="110"required name="userLname" value="<?php echo $userLname;?>" />
+              <input id="applicantLname" class="form-control" type="text" tabindex="110"required name="userLname" value="<?php echo $userLname;?>" />
               <label for="umid">UMID:&nbsp;</label><?php echo $umid;?> <br />
               <label for="emailAddress">Campus eMail:&nbsp;</label><?php echo $login_name . "@umich.edu";?>
 
@@ -236,7 +236,7 @@ switch ($classLevel) {
               <label for="homeNewspaper">Name of your hometown newspaper</label>
               <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  value="<?php echo $homeNewspaper;?>" placeholder="example: The Times-Argus" />
               <label for="penName">Enter a preferred pen name? (Do not use your real name)</label>
-              <input class="form-control" type="text" tabindex="300" name="penName" required value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
+              <input id="applicantPenName" class="form-control" type="text" tabindex="300" name="penName" required value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
           </div>
         </div>
       </div>

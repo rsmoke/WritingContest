@@ -102,7 +102,7 @@ if (isset($_POST['upload'])) {
                           '$login_name')
 SQL;
                     if (!$result = $db->query($sqlInsert)) {
-                          db_fatal_error($db->error, $login_name . " -data insert issue- " . $fileErrMessage, $sqlInsert);
+                          db_fatal_error($db->error, " - Username=> " . $login_name . " -data insert issue- " . $fileErrMessage, $sqlInsert);
                           exit($user_err_message);
                     } else {
                         $db->close();
@@ -112,15 +112,15 @@ SQL;
                     }
                 } else {
                     $target_file = "empty";
-                    $fileErrMessage = $fileErrMessage . "Sorry, there was an error uploading your file.";
-                    non_db_err($fileErrMessage . "Sorry, there was an error uploading your file. Username=> " . $login_name);
+                    $fileErrMessage = $fileErrMessage . " - Sorry, there was an error uploading your file.";
+                    non_db_err($fileErrMessage . " - Username=> " . $login_name);
                     exit();
                 }
             }
         } else {
             $target_file = "empty";
-            $fileErrMessage = $fileErrMessage . "no file information - ";
-            non_db_error($fileErrMessage . "no file information - Username=> " . $login_name);
+            $fileErrMessage = $fileErrMessage . " - no file information - ";
+            non_db_error($fileErrMessage . " Username=> " . $login_name);
             exit($user_err_message);
         }
 }
@@ -138,7 +138,7 @@ if (!empty($_GET['id'])) {
 SQL;
 
     if(!$res = $db->query($sqlSelect)){
-      db_fatal_error($db->error, $login_name . " -Error: Could not resolve (get) contest name", $sqlSelect);
+      db_fatal_error($db->error, "Username=> " . $login_name . " -Error: Could not resolve (get) contest name", $sqlSelect);
       exit($user_err_message);
     }
     if ($res->num_rows > 0) {

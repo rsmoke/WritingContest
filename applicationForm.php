@@ -233,8 +233,7 @@ SQL;
         case 3:
               echo '<div id="hopwoodTemplate">';
                 echo '<h5>ACADEMICS</h5>';
-                // echo '<h6>Please email a copy of your unofficial transcript to the Hopwood Contest Office dropbox at <a href="mailto:upload.Hopwood.ud0jm0juon@u.box.com?subject=Hopwood%20Transcript" target="_blank">upload.Hopwood.ud0jm0juon@u.box.com</a></h6><br>';
-                echo '<h5 class="bg-warning"><span class="text-danger">!!! NOTICE:</span> Please email a copy of your unofficial transcript to the Hopwood Contest Office dropbox at <a href="mailto:upload.Hopwood.ud0jm0juon@u.box.com?subject=Hopwood%20Transcript" target="_blank">upload.Hopwood.ud0jm0juon@u.box.com</a></h5><br>';
+                echo '<h5 class="bg-warning"><span class="text-info">NOTICE:</span> There is no longer a requirement to upload transcripts</h5><br>';
                 echo '<label for="courseNameNumber">Qualifying Course (DEPARTMENT AND COURSE #)</label>';
                 echo '<input class="form-control" type="text" required name="courseNameNum" placeholder="example: eng216" />';
                 echo '<label for="instrName">Name of Instructor</label>';

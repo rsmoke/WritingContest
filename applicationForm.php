@@ -22,14 +22,14 @@ if (isset($_POST['upload'])) {
           unset($_POST['upload']);
           db_fatal_error($db->error, "data lookup issue- " . $login_name, $sqlApplicant);
           exit($user_err_message);
-        } 
+        }
         if ($resApplicant->num_rows > 0) {
           // output data of each row
             while ($row = $resApplicant->fetch_assoc()) {
                 $applicantID =  $row["id"];
                 $classLevelID =  $row["classLevel"];
             }
-        } else { 
+        } else {
             //no contest matched ID so go back to index to allow user to reselect a contest
             non_db_error("no applicant matched ID! Exited application - Username=> " . $login_name);
             exit();
@@ -37,6 +37,7 @@ if (isset($_POST['upload'])) {
         if ((!empty($_FILES["fileToUpload"])) && ($_FILES['fileToUpload']['error'] == 0) && (strlen(basename($_FILES["fileToUpload"]["name"])) < 250)) {
             $target_dir = $_SERVER["DOCUMENT_ROOT"] . '/../contestfiles/';
             $filename = basename($_FILES["fileToUpload"]["name"]);
+            $filename = preg_replace("/[^A-Za-z0-9\.]/", '', $filename);
             $target_file = getUTCTime() . "_" . $filename;
             //added 111215 to fix upload error due to special chars in name
             $target_file = $db->real_escape_string(htmlspecialchars($target_file));
@@ -45,7 +46,7 @@ if (isset($_POST['upload'])) {
             $fileType = $_FILES['fileToUpload']['type'];
             $max_file_size = 20971520; //20M
 
-            $uploadOk = 0; //if this value is 0 the file will not upload. After all check pass it will set to 1. 
+            $uploadOk = 0; //if this value is 0 the file will not upload. After all check pass it will set to 1.
             $fileErrMessage = "<strong>Use your browser's back button and correct the following errors: </strong>";
 
             // Check if file already exists
@@ -139,14 +140,14 @@ SQL;
     if(!$res = $db->query($sqlSelect)){
       db_fatal_error($db->error, $login_name . " -Error: Could not resolve (get) contest name", $sqlSelect);
       exit($user_err_message);
-    } 
+    }
     if ($res->num_rows > 0) {
     // output data of each row
         while ($row = $res->fetch_assoc()) {
             $contestName = $row["name"];
             $contestsID = $row["id"]; //get the tbl_contests id of the contest
         }
-    } else { 
+    } else {
       //no contest matched ID so go back to index to allow user to reselect a contest
       non_db_error("no contest matched ID! sent user back to index to allow them to reselect a contest. Username=> " . $login_name);
       safeRedirect('index.php');

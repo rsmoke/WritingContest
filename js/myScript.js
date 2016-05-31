@@ -8,6 +8,13 @@ $( document ).ready(function(){
 	  $( "#availableEntry" ).html( data );
 	});
 
+  $("#currentEntry").on('click','.applicantdeletebtn', function(e){
+    $.post( 'applicantRemEntry.php',{sbmid:$(this).data('entryid')} );
+    $.get( "individualSubmission.php", function( data ) {
+      $( "#currentEntry" ).html( data );
+    });
+  });
+
 	$("#currentEntry").on('click','.covshtbtn', function(e){
 		var entryid = $(this).data('entryid');
 		window.location = 'coversheet.php?sbmid=' + entryid;

@@ -11,13 +11,14 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
     if ($result->num_rows > 0) {
         echo "<table class='table table-responsive table-condensed'>";
-        echo "<thead><th>Contest</th><th>Entry Type</th><th>Title</th><th>Entry Detail</th></thead><tbody>";
+        echo "<thead><th>Contest</th><th>Entry Type</th><th>Title</th><th>Detail</th><th>Remove</th></thead><tbody>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr><td>";
             echo $row["contestName"] . "</td><td>";
             echo $row["manuscriptType"] . "</td><td>";
-            echo $row["title"] . "</td><td>";
-            echo "<button class='btn btn-warning btn-xs covshtbtn' data-entryid='" . $row["EntryId"] . "'><span class='glyphicon glyphicon-file'></span></button></td></tr>";
+            echo $row["title"] . "</td>";
+            echo "<td class='btnIcon'><button class='btn btn-warning btn-xs covshtbtn' data-entryid='" . $row["EntryId"] . "'><span class='glyphicon glyphicon-file'></span></button></td>";
+            echo "<td class='btnIcon'><button class='btn btn-danger btn-xs applicantdeletebtn' data-entryid='" . $row["EntryId"] . "'><span class='glyphicon glyphicon-remove-sign'></span></button></td></tr>";
         }
           echo "</tbody></table>";
     } else {

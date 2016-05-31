@@ -81,3 +81,7 @@ select {
 .fileUpload-group {
 	margin-top: 5px;
 }
+
+.btnIcon {
+	text-align: center;
+}

@@ -1,7 +1,9 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
-
+if (session_status() == PHP_SESSION_NONE) {
+session_start();
+}
 
 if (isset($_POST['upload'])) {
         $contestID = htmlspecialchars($_POST['contestID']); //Get id passed, this is the contests id
@@ -107,6 +109,7 @@ SQL;
                     } else {
                         $db->close();
                         unset($_POST['upload']);
+                        $_SESSION['flashMessage'] = "<span class='text-success'>- Successful submission -</span>";
                         safeRedirect('index.php');
                         exit();
                     }

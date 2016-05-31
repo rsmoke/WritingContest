@@ -1,5 +1,7 @@
 $( document ).ready(function(){
 
+  $('.flashNotify').fadeOut(6000);
+
 	$.get( "individualSubmission.php", function( data ) {
 	  $( "#currentEntry" ).html( data );
 	});

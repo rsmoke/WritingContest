@@ -1,7 +1,10 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+    //$_SESSION['flashMessage'] = '';
+}
 $userName = ldapGleaner($login_name);
 $hasApplicantDetails = false;
 
@@ -83,6 +86,13 @@ if ($result->num_rows > 0) {
     </nav>
 
     <div class="container"><!--Container of all things -->
+    <div id="flashArea"><span class='flashNotify'>
+    <?php
+    if (isset($_SESSION['flashMessage'])) {
+        echo $_SESSION['flashMessage'];
+        $_SESSION['flashMessage'] = "";
+    }
+    ?></span></div>
 <?php
 if ($hasApplicantDetails) {
 ?>

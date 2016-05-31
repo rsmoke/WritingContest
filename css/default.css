@@ -85,3 +85,9 @@ select {
 .btnIcon {
 	text-align: center;
 }
+
+#flashArea {
+	height: 20px;
+	margin-left: 20px;
+	font-weight: bold;
+}

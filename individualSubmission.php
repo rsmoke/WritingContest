@@ -11,7 +11,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
     if ($result->num_rows > 0) {
         echo "<table class='table table-responsive table-condensed'>";
-        echo "<thead><th>Contest</th><th>Entry Type</th><th>Title</th><th>Detail</th><th>Remove</th></thead><tbody>";
+        echo "<thead><th>Contest</th><th>Entry Type</th><th>Title</th><th class='btnIcon'>Detail</th><th class='btnIcon'>Remove</th></thead><tbody>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr><td>";
             echo $row["contestName"] . "</td><td>";

@@ -1,6 +1,0 @@
-CosignProtected On
-AuthType Cosign
-CosignRequireFactor   UMICH.EDU
-SSLRequireSSL
-AuthLDAPURL ldap://ldap.umich.edu
-Require ldap-group cn=hopwoodContestAdmins,ou=User Groups,ou=Groups,dc=umich,dc=edu

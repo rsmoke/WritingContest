@@ -14,6 +14,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     $streetH =  $db->real_escape_string(htmlspecialchars($_POST["streetH"]));
     $cityH =  $db->real_escape_string(htmlspecialchars($_POST["cityH"]));
     $stateH =  htmlspecialchars($_POST["stateH"]);
+    $countryH =  htmlspecialchars($_POST["countryH"]);
     $zipH =  htmlspecialchars($_POST["zipH"]);
     $usrtelH =  htmlspecialchars($_POST["usrtelH"]); //allow NULL
     $classLevel =  htmlspecialchars($_POST["classLevel"]);
@@ -29,7 +30,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     $penName =  $db->real_escape_string(htmlspecialchars($_POST["penName"])); //allow NULL
 
     $sql = <<<SQL
-      UPDATE tbl_applicant 
+      UPDATE tbl_applicant
       SET userFname='$userFname',
         userLname='$userLname',
         streetL='$streetL',
@@ -40,6 +41,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
         streetH='$streetH',
         cityH='$cityH',
         stateH='$stateH',
+        countryH='$countryH',
         zipH='$zipH',
         usrtelH='$usrtelH',
         classLevel='$classLevel',

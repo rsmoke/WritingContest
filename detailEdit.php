@@ -25,6 +25,7 @@ if ($result->num_rows > 0) {
         $streetH =  $row["streetH"];
         $cityH =  $row["cityH"];
         $stateH =  $row["stateH"];
+        $countryH =  $row["countryH"];
         $zipH =  $row["zipH"];
         $usrtelH =  $row["usrtelH"]; //allow NULL
         $classLevel =  $row["classLevel"];
@@ -176,9 +177,12 @@ switch ($classLevel) {
               <label for="cityH">City</label>
               <input class="form-control" type="text" tabindex="190" required name="cityH" value="<?php echo $cityH;?>"  />
               <label for="stateH">State</label>
-                <select class="form-control bfh-states" tabindex="200" required name="stateH" data-country="US" data-state="<?php echo $stateH;?>"></select>
+                <select class="form-control bfh-states" tabindex="200" required name="stateH" data-country="countries" data-state="<?php echo $stateH;?>"></select>
+                <span id="helpBlock" class="help-block">If your hometown is not in the US, please select the country below first</span>
               <label for="zipH">Zip</label>
               <input class="form-control" type="text" tabindex="210" required name="zipH" value="<?php echo $zipH;?>" pattern="(^[0-9]{5}$)" placeholder="example: 01101" title="enter a 5 digit zipcode"/>
+              <label for="countryH">Country</label>
+                <select id="countries" class="form-control bfh-countries" tabindex="200" required name="countryH" data-country="<?php echo $countryH;?>"></select>
               <label for="usrtelH">Phone</label>
               <input class="form-control bfh-phone" type="text" tabindex="220" name="usrtelH" data-format="ddd-ddd-dddd" value="<?php echo $usrtelH;?>" />
 

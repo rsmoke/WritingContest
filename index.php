@@ -217,9 +217,12 @@ if ($hasApplicantDetails) {
                         <label for="cityH">City</label>
                         <input class="form-control" type="text" tabindex="190" required name="cityH" />
                         <label for="stateH">State</label>
-                          <select class="form-control bfh-states" tabindex="200" required name="stateH" data-country="US" data-state="MI"></select>
+                          <select class="form-control bfh-states" tabindex="200" required name="stateH" data-country="countries" data-state="MI"></select>
+                          <span id="helpBlock" class="help-block">If your hometown is not in the US, please select the country below first</span>
                         <label for="zipH">Zip</label>
                         <input class="form-control" type="text" tabindex="210" required name="zipH" pattern="(^[0-9]{5}$)" title="enter a 5 digit zipcode"/>
+                        <label for="countryH">Country</label>
+                          <select id="countries" class="form-control bfh-countries" tabindex="200" required name="countryH" data-country="US"></select>
                         <label for="usrtelH">Phone</label>
                         <input class="form-control" type="text" tabindex="220" name="usrtelH" data-format="ddd-ddd-dddd" />
 

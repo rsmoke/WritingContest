@@ -125,7 +125,7 @@ if ($hasApplicantDetails) {
                             Hopwood Contests
                         </dt>
                         <dd>
-                            There are three Hopwood Contests held throughout the year. These Hopwood Contests require enrollment in a qualifying writing course.
+                            There are four Hopwood Contests held throughout the year. These Hopwood Contests require enrollment in a qualifying writing course.
                             </dd>
                         <dt>
                             Other Contests

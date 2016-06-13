@@ -18,7 +18,7 @@ $sqlSelect = <<<SQL
 
 SQL;
     if (!$result = $db->query($sqlSelect)) {
-        db_fatal_error($db->error, "data select issue", $sqlSelect);
+        db_fatal_error("Data select issue", $db->error, $sqlSelect, $login_name);
         exit($user_err_message);
     }
   //do stuff with your $result set

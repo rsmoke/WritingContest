@@ -5,7 +5,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
 $sql = "SELECT * FROM tbl_applicant WHERE uniqname = '$login_name'";
 if (!$result = $db->query($sql)) {
-    db_fatal_error($db->error, "Details Error- ". $login, $sql);
+    db_fatal_error("Details Error", $db->error, $sql, $login_name);
     exit($user_err_message);
 }
 

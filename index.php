@@ -15,7 +15,7 @@ $hasApplicantDetails = false;
 SQL;
 
 if (!$result = $db->query($sqlSelect)) {
-        db_fatal_error($db->error, "data insert issue- " . $login_name, $sqlSelect);
+        db_fatal_error("data read issue", $db->error, $sqlSelect, $login_name);
         exit($user_err_message);
 }
   //do stuff with your $result set

@@ -22,7 +22,7 @@ if (isset($_POST['upload'])) {
         $sqlApplicant = "SELECT id, classLevel FROM tbl_applicant WHERE uniqname = '$login_name' ";
         if(!$resApplicant = $db->query($sqlApplicant)){
           unset($_POST['upload']);
-          db_fatal_error($db->error, "data lookup issue- " . $login_name, $sqlApplicant);
+          db_fatal_error("data lookup issue", $db->error, $sqlApplicant, $login_name);
           exit($user_err_message);
         }
         if ($resApplicant->num_rows > 0) {
@@ -104,7 +104,7 @@ if (isset($_POST['upload'])) {
                           '$login_name')
 SQL;
                     if (!$result = $db->query($sqlInsert)) {
-                          db_fatal_error($db->error, " - Username=> " . $login_name . " -data insert issue- " . $fileErrMessage, $sqlInsert);
+                          db_fatal_error("Data insert issue- " . $fileErrMessage, $db->error, $sqlInsert, $login_name);
                           exit($user_err_message);
                     } else {
                         $db->close();
@@ -141,7 +141,7 @@ if (!empty($_GET['id'])) {
 SQL;
 
     if(!$res = $db->query($sqlSelect)){
-      db_fatal_error($db->error, "Username=> " . $login_name . " -Error: Could not resolve (get) contest name", $sqlSelect);
+      db_fatal_error("Error: Could not resolve (get) contest name", $db->error, $sqlSelect, $login_name);
       exit($user_err_message);
     }
     if ($res->num_rows > 0) {

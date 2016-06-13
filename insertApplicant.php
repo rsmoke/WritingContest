@@ -40,7 +40,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     , '$homeNewspaper', '$penName', '$login_name', now())
 SQL;
 if (!$db->query($sqlInsert)) {
-   db_fatal_error($db->error, "Insert failed- " . $login_name, $sqlInsert);
+   db_fatal_error("Insert failed", $db_error, $sqlInsert, $login_name);
         exit($user_err_message);
 }
   //echo "New record created successfully";

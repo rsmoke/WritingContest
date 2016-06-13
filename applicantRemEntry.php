@@ -10,7 +10,7 @@ $sqlUpdate = <<<SQL
     WHERE id = $entryid
 SQL;
     if(!$result = $db->query($sqlUpdate)){
-        db_fatal_error($db->error, "Applicant individual entry deletion - " . "Username=> " . $login_name . " - ", $sqlUpdate);
+        db_fatal_error("Update failed", $db->error, $sqlUpdate, $login_name);
         exit($user_err_message);
     }
 

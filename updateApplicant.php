@@ -60,7 +60,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 SQL;
 
     if(!$result = $db->query($sql)){
-        db_fatal_error($db->error, "ERROR: Update failed- " . $login_name, $sql);
+        db_fatal_error("ERROR: Update failed", $db_error, $sql, $login_name);
         exit($user_err_message);
     }
     //echo "New record created successfully";

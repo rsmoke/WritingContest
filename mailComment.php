@@ -75,16 +75,17 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     $last_name = htmlspecialchars($_POST['last_name']);
     $subject = "Hopwood WritingContest - " . htmlspecialchars($_POST['topic']);
     $subject2 = "Copy of your Hopwood WritingContest comment or question form submission";
-    $messageFooter = "-- Please do not reply to this email. --";
-    $message = "logged in as=> " . $login_name . " " . $first_name . " " . $last_name . " wrote the following:" . "\n\n" . htmlspecialchars($_POST['message']);
+    $messageFooter = "-- Please do not reply to this email. If you requested a reply or if we need more information, we will contact you at the email address you provided. --";
+    $message = "logged in as=> " . $login_name . " " . $first_name . " " . $last_name . " email=> " . $from . " wrote the following:" . "\n\n" . htmlspecialchars($_POST['message']);
     $message2 = "Here is a copy of your message " . $first_name . ":\n\n" . htmlspecialchars($_POST['message']) . "\n\n" . $messageFooter;
 
 
     $headers = "From:" . $from;
     $headers2 = "From:" . $to;
     mail($to,$subject,$message,$headers);
-    mail($from,$subject2,$message2, "From:hopwoodContestAdmins@umich.edu"); // sends a copy of the message to the sender
-    echo "<h4>Mail Sent. Thank you " . $first_name . ", we will contact you shortly if you requested it.</h4>";
+    mail($from,$subject2,$message2, "From:english.department@umich.edu"); // sends a copy of the message to the sender
+    echo "<h4>Mail Sent.</h4> <p>Thank you " . $first_name . " for getting in touch! We’ve sent you a copy of this message at the email address you provided.<br>
+Have a great day!</p>";
     echo "<a class='btn btn-info' href='index.php'>Return to Hopwood Writing Contest</a>";
     // You can also use header('Location: thank_you.php'); to redirect to another page.
     unset($_POST['submit']);

@@ -51,7 +51,7 @@ if ($res->num_rows > 0) {
     }
         echo "</tbody></table>";
 } else {
-        echo "0 entries";
+        echo "No contests are currently open";
 }
 
     $db->close();

@@ -152,6 +152,7 @@ if ($hasApplicantDetails) {
                     <ul>
                     <li><i>NOTE: Be sure your profile is up to date before submitting your entry.</i><a href="detailEdit.php" class="btn btn-info btn-xs" type="button">keep your profile up to date</a></li>
                     </ul>
+                    <p><a href='mailComment.php'><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Questions or Comments</a></p>
                     </div>
                 </div>
             </div>

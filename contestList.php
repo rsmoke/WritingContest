@@ -28,10 +28,9 @@ while ($row = $res->fetch_assoc()) {
     }
 }
 
-//    $sql = "SELECT * FROM vw_contestlisting";
 //limit contestlisting to currently open constest 120215
     $current_timestamp = date('Y-m-d G:i:s');
-    $sql = "SELECT * FROM vw_contestlisting WHERE date_closed > '$current_timestamp'";
+    $sql = "SELECT * FROM vw_contestlisting WHERE date_closed > '$current_timestamp' AND status = 0";
 
     $res = $db->query($sql);
 if ($res->num_rows > 0) {

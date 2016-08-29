@@ -45,7 +45,7 @@ SQL;
 
             echo "<strong>Author's Pen name:</strong> " . $row["penName"] ."<br />";
 
-            echo "<strong>The Contest and division entered:</strong> " . $row["contestName"] . " - " . $row["manuscriptType"] . "<br />";
+            echo "<strong>Contest and division entered:</strong> " . $row["contestName"] . " - " . $row["manuscriptType"] . "<br />";
 
             echo "<strong>Date submitted:</strong> " . date("F jS, Y - g:i:s A", (strtotime($row["datesubmitted"])));
 

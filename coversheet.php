@@ -43,11 +43,11 @@ SQL;
             echo "<div style='padding: 0 0 0 40px;'>";
             echo "<h2>Entry Title:</strong> " . $row["title"] . "</h2>";
 
-            echo "<strong>Authors Pen-name:</strong> " . $row["penName"] ."<br />";
+            echo "<strong>Author's Pen name:</strong> " . $row["penName"] ."<br />";
 
-            echo "<strong>The contest and division entered:</strong> " . $row["contestName"] . " - " . $row["manuscriptType"] . "<br />";
+            echo "<strong>The Contest and division entered:</strong> " . $row["contestName"] . " - " . $row["manuscriptType"] . "<br />";
 
-            echo "<strong>Date Submitted Online:</strong> " . date("F jS, Y - g:i:s A", (strtotime($row["datesubmitted"])));
+            echo "<strong>Date submitted:</strong> " . date("F jS, Y - g:i:s A", (strtotime($row["datesubmitted"])));
 
             echo "</div>";
 

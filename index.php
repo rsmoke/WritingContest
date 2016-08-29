@@ -119,7 +119,7 @@ if ($hasApplicantDetails) {
         <!-- if there is a record for the logged in user in the database then display contests available -->
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <h3 class="text-left">The <?php echo $contestTitle; ?> hosts a variety of contests and prizes for students at the University of Michigan.</h3>
+                    <h4 class="text-left">The <?php echo $contestTitle; ?> hosts a variety of contests and prizes for students at the University of Michigan.</h4>
                     <dl>
                         <dt>
                             Hopwood Contests
@@ -141,9 +141,9 @@ if ($hasApplicantDetails) {
                     <div class="col-md-12 column">
                     <h3>Instructions:</h3>
                     <ol>
-                    <li>Select the apply button, <i>it looks like this</i> ( <span class="btn btn-success btn-xs" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></span> ), next to the contest you would like to enter.</li>
-                    <li>Completely fill in the form that opens up and select the upload button, <i>it looks like this</i> ( <span class="btn btn-success btn-xs" disabled="disabled">Upload Application</span> )</li>
-                    <li>Select the details button next to your entry below, <i>it looks like this</i> ( <span class="btn btn-warning btn-xs" disabled="disabled"><span class="glyphicon glyphicon-file"></span></span> ), to view the complete details of your entry submission.</li>
+                    <li>Click the ( <span class="btn btn-success btn-xs" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></span> ) button adjacent to the name of the contest you’d like to enter.</li>
+                    <li>Complete the form and click the ( <span class="btn btn-success btn-xs" disabled="disabled">Upload Application</span> ) button.</li>
+                    <li>Click the ( <span class="btn btn-warning btn-xs" disabled="disabled"><span class="glyphicon glyphicon-file"></span></span> ) button to review your submission.</li>
                     </ol>
                     <ul>
 
@@ -171,7 +171,7 @@ if ($hasApplicantDetails) {
             <div id="appHistory">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                        <h4 class="text-left text-muted">These are the contests that you have submitted to:</h4>
+                        <h4 class="text-left text-muted">These are the contests that you have entered:</h4>
                         <div id="currentEntry"></div>
                     </div>
                 </div>
@@ -272,11 +272,12 @@ if ($hasApplicantDetails) {
 
                         <hr>
                         <h5>PUBLICITY:</h5>
+                        <p>If your manuscript earns a Hopwood or other award, the Hopwood committee will forward a press release to your local newspaper or media outlet.</p>
                         <label for="namePub">Entrant's name as it should appear in publicity</label>
                         <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $userName[0] . " " . $userName[1];?>"/>
-                        <label for="homeNewspaper">Name of your hometown newspaper</label>
+                        <label for="homeNewspaper">Name of your hometown newspaper or preferred media outlet</label>
                         <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />
-                        <label for="penName">Enter a preferred pen name? (Do not use your real name)</label>
+                        <label for="penName">Enter a preferred Pen name? (Do not use your real name)</label>
                         <input id="applicantPenName" class="form-control" type="text" tabindex="300" name="penName" required placeholder="example: Sarah Bellum" />
                     </div>
                 </div>

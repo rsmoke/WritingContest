@@ -235,11 +235,12 @@ switch ($classLevel) {
 
               <hr>
               <h5>PUBLICITY:</h5>
+              <p>If your manuscript earns a Hopwood or other award, the Hopwood committee will forward a press release to your local newspaper or media outlet.</p>
               <label for="namePub">Entrant's name as it should appear in publicity</label>
               <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $namePub;?>" />
-              <label for="homeNewspaper">Name of your hometown newspaper</label>
+              <label for="homeNewspaper">Name of your hometown newspaper or preferred media outlet</label>
               <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  value="<?php echo $homeNewspaper;?>" placeholder="example: The Times-Argus" />
-              <label for="penName">Enter a preferred pen name? (Do not use your real name)</label>
+              <label for="penName">Enter a preferred Pen name? (Do not use your real name)</label>
               <input id="applicantPenName" class="form-control" type="text" tabindex="300" name="penName" required value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
           </div>
         </div>

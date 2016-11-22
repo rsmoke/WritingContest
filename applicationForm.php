@@ -253,6 +253,7 @@ SQL;
                 echo '<input class="form-control" type="text" required name="recLetter2Name" placeholder="example: Alisse Portnoy" />';
               echo '</div>';
             break;
+        // Do I need a default here?
     }
         ?>
 
@@ -266,7 +267,7 @@ SQL;
     <?php //select what the application category(novel, poetry, fiction etc) is for the submission by
             //taking the contests id and doing a lookup on link_contestsTocategory
     switch ($contestsID) { //What contests id is being submitted to
-        case 1: // it would be categoryID 1 2 3 4 5
+        case 1: // it would be categoryID 3 4 5
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
@@ -275,7 +276,7 @@ SQL;
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required disabled >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required disabled >Shortfiction</label>';
             break;
-        case 2:
+        case 2:  //it would be categoryID 1 2 3 5 6 7
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required >Novel</label>';
@@ -284,7 +285,7 @@ SQL;
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required >Screenplay</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required >Shortfiction</label>';
             break;
-        case 3: //it would be categoryID 1 or 2 build select statement
+        case 3: //it would be categoryID 1 2 3 4 5
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
@@ -313,7 +314,7 @@ SQL;
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required disabled >Shortfiction</label>';
             break;
-        case 12: //it would be categoryID 1 or 2 build select statement
+        case 12: //it would be categoryID 1 2 4 or 5 build select statement
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';

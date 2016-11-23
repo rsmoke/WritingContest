@@ -233,7 +233,9 @@ SQL;
     switch ($contestsID) {
         case 1: //falls through
         case 2: //falls through
-        case 3:
+        case 3: //falls through
+        case 17: //falls through
+        case 18: //falls through
               echo '<div id="hopwoodTemplate">';
                 echo '<h5>ACADEMICS</h5>';
                 echo '<h5 class="bg-warning"><span class="text-info">NOTICE:</span> There is no longer a requirement to upload transcripts</h5><br>';
@@ -267,12 +269,21 @@ SQL;
     <?php //select what the application category(novel, poetry, fiction etc) is for the submission by
             //taking the contests id and doing a lookup on link_contestsTocategory
     switch ($contestsID) { //What contests id is being submitted to
-        case 1: // it would be categoryID 3 4 5
+        case 17: // it would be categoryID 3
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
-            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" checked required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
-            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" required >Nonfiction</label>';
-            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
+            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" checked required >Nonfiction</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required disabled >Screenplay</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required disabled >Shortfiction</label>';
+            break;
+        case 18: // it would be categoryID 4
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
+            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" checked required >Fiction</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" required >Nonfiction</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required disabled >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required disabled >Shortfiction</label>';
             break;

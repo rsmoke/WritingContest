@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
         $edited_on = $row["edited_on"];
     }
 } else {
-    non_db_error("No result for" . $login_name);
+    non_db_error("No result for" . $login_name, $login_name);
     exit($user_err_message);
 }
 

@@ -33,7 +33,7 @@ if (isset($_POST['upload'])) {
             }
         } else {
             //no contest matched ID so go back to index to allow user to reselect a contest
-            non_db_error("no applicant matched ID! Exited application - Username=> " . $login_name);
+            non_db_error("no applicant matched ID! Exited application - Username=> " . $login_name, $login_name);
             exit();
         }
         if ((!empty($_FILES["fileToUpload"])) && ($_FILES['fileToUpload']['error'] == 0) && (strlen(basename($_FILES["fileToUpload"]["name"])) < 250)) {
@@ -69,7 +69,7 @@ if (isset($_POST['upload'])) {
             if ($uploadOk == 0) {
                 $fileErrMessage = $fileErrMessage . " <br />=>Your file was not uploaded. Confirm the file is 20 megabytes or less and in PDF format.";
                 $target_file = "empty";
-                non_db_error($fileErrMessage . "Username=> " . $login_name);
+                non_db_error($fileErrMessage . "Username=> " . $login_name, $login_name);
                 exit($user_err_message . "<br />" . $fileErrMessage);
             } else {
                 // if everything is ok, try to upload file
@@ -123,7 +123,7 @@ SQL;
         } else {
             $target_file = "empty";
             $fileErrMessage = $fileErrMessage . " - no file information - ";
-            non_db_error($fileErrMessage . " Username=> " . $login_name);
+            non_db_error($fileErrMessage . " Username=> " . $login_name, $login_name);
             exit($user_err_message);
         }
 }
@@ -152,7 +152,7 @@ SQL;
         }
     } else {
       //no contest matched ID so go back to index to allow user to reselect a contest
-      non_db_error("no contest matched ID! sent user back to index to allow them to reselect a contest. Username=> " . $login_name);
+      non_db_error("no contest matched ID! sent user back to index to allow them to reselect a contest. Username=> " . $login_name, $login_name);
       safeRedirect('index.php');
       exit();
     }
@@ -434,7 +434,7 @@ SQL;
 <?php
 } else {
   //"no ID in url so go back to index to allow user to reselect a contest"
-  non_db_error("no ID in url! sent user back to index to allow them to reselect a contest. Username=> " . $login_name);
+  non_db_error("no ID in url! sent user back to index to allow them to reselect a contest. Username=> " . $login_name, $login_name);
   safeRedirect('index.php');
   exit();
 }

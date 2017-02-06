@@ -29,13 +29,14 @@ SQL;
         <head>
           <META http-equiv='Content-Type' content='text/html; charset=UTF-8'>
           <title>Hopwood Writing Contests</title>
+          <link rel='icon' href='img/favicon.ico'>
         </head>
 
         <body>";
 
         echo "<div><h1>Entry Submission Details</h1>";
         echo "<ul>";
-        echo "<li>Contest rules can be found <a href='http://www.lsa.umich.edu/hopwood/contestsprizes' target='_blank'>here</a></li>";
+        echo "<li>Contest rules can be found <a href='http://www.lsa.umich.edu/hopwood/contests-prizes' target='_blank'>here</a></li>";
         echo "<li>Use the browser back button to return to your list of entries</li>";
         echo "</ul></div>";
         echo "<h1>============================================================</h1>";

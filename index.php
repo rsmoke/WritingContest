@@ -139,20 +139,19 @@ if ($hasApplicantDetails) {
             <div id="instructions">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                    <h3>Instructions:</h3>
-                    <ol>
-                    <li>Click the ( <span class="btn btn-success btn-xs" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></span> ) button adjacent to the name of the contest you’d like to enter.</li>
-                    <li>Complete the form and click the ( <span class="btn btn-success btn-xs" disabled="disabled">Upload Application</span> ) button.</li>
-                    <li>Click the ( <span class="btn btn-warning btn-xs" disabled="disabled"><span class="glyphicon glyphicon-file"></span></span> ) button to review your submission.</li>
-                    </ol>
-                    <ul>
-
-                    <li><i>NOTE: You will need to upload a separate application for each genre in the Hopwood Contest and poem in the Rapaport Contest.</i></li>
-                    </ul>
-                    <ul>
-                    <li><i>NOTE: Be sure your profile is up to date before submitting your entry.</i><a href="detailEdit.php" class="btn btn-info btn-xs" type="button">keep your profile up to date</a></li>
-                    </ul>
-                    <p><a href='mailComment.php'><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Questions or Comments</a></p>
+                        <h3>Instructions:</h3>
+                        <ol>
+                            <li>Click the ( <span class="btn btn-success btn-xs" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></span> ) button adjacent to the name of the contest you’d like to enter.</li>
+                            <li>Complete the form and click the ( <span class="btn btn-success btn-xs" disabled="disabled">Upload Application</span> ) button.</li>
+                            <li>Click the ( <span class="btn btn-warning btn-xs" disabled="disabled"><span class="glyphicon glyphicon-file"></span></span> ) button to review your submission.</li>
+                        </ol>
+                        <ul>
+                            <li><em>NOTE: You will need to upload a separate application for each genre in the Hopwood Contest and poem in the Rapaport Contest.</em></li>
+                            <li><em>NOTE: Be sure your profile is up to date before submitting your entry.</em> <a href="detailEdit.php" class="btn btn-info btn-xs" type="button">keep your profile up to date</a></li>
+                            <li><em>NOTE: The pen name in your</em> <a href="detailEdit.php" class="btn btn-info btn-xs" type="button">profile</a> <em>must match the one on your pdf; your real name may <u>not</u> be used.</em></li>
+                            <li><em>NOTE: If you are submitting multiple works in a genre (for example, short fiction or poetry), the pdf must contain all the works.  Do not enter a genre multiple times.</em></li>
+                        </ul>
+                        <p><a href='mailComment.php'><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Questions or Comments</a></p>
                     </div>
                 </div>
             </div>
@@ -277,7 +276,7 @@ if ($hasApplicantDetails) {
                         <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $userName[0] . " " . $userName[1];?>"/>
                         <label for="homeNewspaper">Name of your hometown newspaper or preferred media outlet</label>
                         <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />
-                        <label for="penName">Enter a Pen name? (Do not use your real name)</label>
+                        <label for="penName">Enter a Pen name? (Do not use your real name and this pen name must match the one on your pdf entry(s))</label>
                         <input id="applicantPenName" class="form-control" type="text" tabindex="300" name="penName" required pattern="^\S[a-zA-Z \/,.'-íéö]+$" placeholder="example: Sarah Bellum" />
                     </div>
                 </div>

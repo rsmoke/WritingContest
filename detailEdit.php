@@ -240,7 +240,7 @@ switch ($classLevel) {
               <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $namePub;?>" />
               <label for="homeNewspaper">Name of your hometown newspaper or preferred media outlet</label>
               <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  value="<?php echo $homeNewspaper;?>" placeholder="example: The Times-Argus" />
-              <label for="penName">Enter a Pen name? (Do not use your real name)</label>
+              <label for="penName">Enter a Pen name? (Do not use your real name and this pen name must match the one on your pdf entry(s))</label>
               <input id="applicantPenName" class="form-control" type="text" tabindex="300" name="penName" required pattern="^\S[a-zA-Z \/,.'-íéö]+$" value="<?php echo $penName;?>" placeholder="example: Sarah Bellum" />
           </div>
         </div>

@@ -23,7 +23,7 @@ if (!$result = $db->query($sqlSelect)) {
 if ($result->num_rows > 0) {
     $hasApplicantDetails = true;
 }
-     $db->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

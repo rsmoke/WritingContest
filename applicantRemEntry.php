@@ -13,5 +13,3 @@ SQL;
         db_fatal_error("Update failed", $db->error, $sqlUpdate, $login_name);
         exit($user_err_message);
     }
-
-    $db->close();

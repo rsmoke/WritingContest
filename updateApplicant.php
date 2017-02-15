@@ -66,5 +66,4 @@ SQL;
     //echo "New record created successfully";
     safeRedirect('index.php');
     exit();
-$result->close;
-$db->close();
+

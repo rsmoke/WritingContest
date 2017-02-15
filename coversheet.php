@@ -58,4 +58,4 @@ SQL;
     } else {
         echo "Nothing to show!";
     }
-$db->close();
+

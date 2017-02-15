@@ -31,4 +31,3 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
         echo "You currently have no entries in any of the contests";
     }
 
-    $db->close();

@@ -53,4 +53,3 @@ if ($res->num_rows > 0) {
         echo "No contests are currently open";
 }
 
-    $db->close();

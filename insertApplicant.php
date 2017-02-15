@@ -48,4 +48,3 @@ if (!$db->query($sqlInsert)) {
   safeRedirect('index.php');
   exit();
 
-  $db->close();

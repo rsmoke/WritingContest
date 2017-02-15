@@ -46,7 +46,6 @@ if ($result->num_rows > 0) {
     exit($user_err_message);
 }
 
-$db->close();
 
 //set radio button
 $froshRadState = "unchecked";

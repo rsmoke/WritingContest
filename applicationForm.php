@@ -107,7 +107,6 @@ SQL;
                           db_fatal_error("Data insert issue- " . $fileErrMessage, $db->error, $sqlInsert, $login_name);
                           exit($user_err_message);
                     } else {
-                        $db->close();
                         unset($_POST['upload']);
                         $_SESSION['flashMessage'] = "<span class='text-success'>- Successful submission -</span>";
                         safeRedirect('index.php');

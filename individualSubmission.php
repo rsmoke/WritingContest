@@ -3,10 +3,10 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 
-    $sql = "SELECT contestName, manuscriptType, document, title, datesubmitted, EntryId FROM vw_entrydetail WHERE uniqname = '$login_name' AND status = 0";
+    $sql = "SELECT contestName, manuscriptType, document, title, datesubmitted, EntryId, date_closed FROM vw_entrydetail WHERE uniqname = '$login_name' AND status = 0";
     if ($result = $db->prepare($sql)) {
         $result->execute();
-        $result->bind_result($contestName, $manuscriptType, $document, $title,  $datesubmitted,  $EntryId);
+        $result->bind_result($contestName, $manuscriptType, $document, $title,  $datesubmitted,  $EntryId, $date_closed);
         $result->store_result();
 
         echo "<table class='table table-responsive table-condensed'>";
@@ -20,7 +20,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
             echo "$title</td><td>";
             echo date("F jS, Y  g:i A", (strtotime($datesubmitted))) . "</td>";
             echo "<td class='btnIcon'><a href='fileholder.php?file=$document' target='_blank'><span class='glyphicon glyphicon-book'></span></a></td>";
-            echo "<td class='btnIcon'><button class='btn btn-danger btn-xs applicantdeletebtn' data-entryid='$EntryId'><span class='glyphicon glyphicon-remove-sign'></span></button></td></tr>";
+            echo "<td class='btnIcon'><button class='btn btn-danger btn-xs ";
+
+            echo date("Y-m-d H:i:s") > $date_closed? ' disabled ' : '';
+
+            echo " applicantdeletebtn' data-entryid='$EntryId'><span class='glyphicon glyphicon-remove-sign'></span></button></td></tr>";
         }
           echo "</tbody></table>";
     } else {

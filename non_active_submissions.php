@@ -10,7 +10,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
         $result->store_result();
 
         echo "<table class='table table-responsive table-condensed table-hover'>";
-        echo "<thead><th>Contest</th><th>Entry Type</th><th>Title</th><th>Submitted</th><th class='btnIcon'>Manuscript<br><span style='font-size:.9rem;'>(opens in a new browser tab)</span></th><th>Entry Status</th></thead><tbody>";
+        echo "<thead><th>Contest</th><th>Entry Type</th><th>Title</th><th>Submitted</th><th class='btnIcon'>Manuscript<br><span style='font-size:.9rem;'>opens in a new browser tab</span></th><th>Entry Status</th></thead><tbody>";
         for ($i = 0; $i < $result->num_rows; $i++) {
           $result->data_seek($i);
           $result->fetch();

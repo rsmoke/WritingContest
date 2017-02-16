@@ -174,12 +174,12 @@ if ($hasApplicantDetails) {
                         <div id="currentEntry"></div>
                     </div>
                 </div>
-<!--                 <div class="row clearfix">
+                <div class="row clearfix">
                     <div class="col-md-12 column well">
                         <h5 class="text-left text-muted">These are inactivated contest entries <em>(mostly from past contests)</em>:</h5>
                         <div id="non_active_Entry"></div>
                     </div>
-                </div> -->
+                </div>
             </div>
 
 <?php

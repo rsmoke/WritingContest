@@ -11,10 +11,9 @@ $( document ).ready(function(){
 	  $( "#currentEntry" ).html( data );
 	});
 
-  // $.get( "non_active_submissions.php", function( data ) {
-  //   $( "#non_active_Entry" ).html( data );
-  //   non_data = data;
-  // });
+  $.get( "non_active_submissions.php", function( data ) {
+    $( "#non_active_Entry" ).html( data );
+  });
 
 	$.get( "contestList.php", function( data ) {
 	  $( "#availableEntry" ).html( data );
@@ -54,8 +53,7 @@ $( document ).ready(function(){
 		window.location = useAppTemplate + '.php?id=' + useContest;
 	});
 
-
-    $('.date-picker').datepicker( {
+  $('.date-picker').datepicker( {
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
@@ -67,7 +65,6 @@ $( document ).ready(function(){
         }
     });
 
-
   $('#applicantPenName').blur(function() {
     if ($('#applicantPenName').val() == $('#applicantFname').val() + ' ' + $('#applicantLname').val()){
       alert( "NOTE: Do not use your real name as a pen-name!" );
@@ -76,6 +73,5 @@ $( document ).ready(function(){
       $('#applyBasicInfo').prop('disabled', false);
     };
   });
-
 
 });

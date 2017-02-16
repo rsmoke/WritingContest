@@ -13,6 +13,7 @@ $( document ).ready(function(){
 
   $.get( "non_active_submissions.php", function( data ) {
     $( "#non_active_Entry" ).html( data );
+    non_data = data;
   });
 
 	$.get( "contestList.php", function( data ) {

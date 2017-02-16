@@ -53,7 +53,7 @@ $( document ).ready(function(){
 		window.location = useAppTemplate + '.php?id=' + useContest;
 	});
 
-	$(function() {
+
     $('.date-picker').datepicker( {
         changeMonth: true,
         changeYear: true,
@@ -65,7 +65,7 @@ $( document ).ready(function(){
             $(this).datepicker('setDate', new Date(year, month, 1));
         }
     });
-});
+
 
   $('#applicantPenName').blur(function() {
     if ($('#applicantPenName').val() == $('#applicantFname').val() + ' ' + $('#applicantLname').val()){

@@ -11,10 +11,10 @@ $( document ).ready(function(){
 	  $( "#currentEntry" ).html( data );
 	});
 
-  $.get( "non_active_submissions.php", function( data ) {
-    $( "#non_active_Entry" ).html( data );
-    non_data = data;
-  });
+  // $.get( "non_active_submissions.php", function( data ) {
+  //   $( "#non_active_Entry" ).html( data );
+  //   non_data = data;
+  // });
 
 	$.get( "contestList.php", function( data ) {
 	  $( "#availableEntry" ).html( data );

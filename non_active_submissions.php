@@ -28,7 +28,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
                 $status_notice = $status;
           }
 
-            echo "<tr><td>";
+            echo "<tr><td>$result->num_rows ";
             echo "$contestName</td><td>";
             echo "$manuscriptType</td><td>";
             echo "$title</td><td>";

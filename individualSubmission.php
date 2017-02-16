@@ -46,7 +46,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
                     echo $row['manuscriptType'] . "</td><td>";
                     echo $row['title'] . "</td><td>";
                     echo date("F jS, Y  g:i A", (strtotime($row['datesubmitted']))) . "</td>";
-                    echo "<td class='btnIcon'><a href='fileholder.php?file='" . $row['document'] . "' target='_blank'><span class='glyphicon glyphicon-book'></span></a></td>";
+                    echo "<td class='btnIcon'><a href='fileholder.php?file=" . $row['document'] . "' target='_blank'><span class='glyphicon glyphicon-book'></span></a></td>";
                     echo "<td class='btnIcon'><button class='btn btn-danger btn-xs ";
 
                     echo date("Y-m-d H:i:s") > $row['date_closed']? ' disabled ' : '';

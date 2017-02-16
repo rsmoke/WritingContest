@@ -10,15 +10,15 @@ $( document ).ready(function(){
   $.when(
   	$.get( "individualSubmission.php", function( data ) {
   	  ind_data = data;
-  	});
+  	}),
 
     $.get( "non_active_submissions.php", function( data ) {
       non_data = data;
-    });
+    }),
 
   	$.get( "contestList.php", function( data ) {
   	  cont_list_data = data;
-  	});
+  	})
 
   ).then(function() {
 

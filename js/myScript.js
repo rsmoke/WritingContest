@@ -23,13 +23,13 @@ $( document ).ready(function(){
     console.log("ind submission been got");
   });
 
-  $.when(non_sub).done(function() {
-    console.log("non-actives been got");
-  });
+  // $.when(non_sub).done(function() {
+  //   console.log("non-actives been got");
+  // });
 
-  $.when(cont_list).done(function() {
-    console.log("contest list been got");
-  });
+  // $.when(cont_list).done(function() {
+  //   console.log("contest list been got");
+  // });
 
   $("#currentEntry").on('click','.applicantdeletebtn', function(e){
     $.post( 'applicantRemEntry.php',{sbmid:$(this).data('entryid')} );

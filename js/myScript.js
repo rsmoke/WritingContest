@@ -19,8 +19,16 @@ $( document ).ready(function(){
 	  $( "#availableEntry" ).html( data );
 	});
 
-  $.when(ind_sub, non_sub, cont_list).done(function() {
-    console.log("all gets been got");
+  $.when(ind_sub).done(function() {
+    console.log("ind submission been got");
+  });
+
+  $.when(non_sub).done(function() {
+    console.log("non-actives been got");
+  });
+
+  $.when(cont_list).done(function() {
+    console.log("contest list been got");
   });
 
   $("#currentEntry").on('click','.applicantdeletebtn', function(e){

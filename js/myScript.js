@@ -7,15 +7,15 @@ $( document ).ready(function(){
 
   $('.flashNotify').fadeOut(6000);
 
-	$.get( "individualSubmission.php", function( data ) {
+	$.get( "individualSubmission.php" ).done(function( data ) {
 	  $( "#currentEntry" ).html( data );
 	});
 
-  $.get( "non_active_submissions.php", function( data ) {
+  $.get( "non_active_submissions.php" ).done(function( data ) {
     $( "#non_active_Entry" ).html( data );
   });
 
-	$.get( "contestList.php", function( data ) {
+	$.get( "contestList.php" ).done(function( data ) {
 	  $( "#availableEntry" ).html( data );
 	});
 

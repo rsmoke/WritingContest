@@ -7,17 +7,21 @@ $( document ).ready(function(){
 
   $('.flashNotify').fadeOut(6000);
 
-	$.get( "individualSubmission.php", function( data ) {
+	var ind_sub = $.get( "individualSubmission.php", function( data ) {
 	  $( "#currentEntry" ).html( data );
 	});
 
-  $.get( "non_active_submissions.php", function( data ) {
+  var non_sub = $.get( "non_active_submissions.php", function( data ) {
     $( "#non_active_Entry" ).html( data );
   });
 
-	$.get( "contestList.php", function( data ) {
+	var cont_list = $.get( "contestList.php", function( data ) {
 	  $( "#availableEntry" ).html( data );
 	});
+
+  $.when(ind_sub, non_sub, cont_list).done(function() {
+    console.log("all gets been got");
+  });
 
   $("#currentEntry").on('click','.applicantdeletebtn', function(e){
     $.post( 'applicantRemEntry.php',{sbmid:$(this).data('entryid')} );

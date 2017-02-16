@@ -71,6 +71,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
                 }
                   echo "</tbody></table>";
             } else {
-                echo "You currently have no entries in any of the contests";
+                echo "There are no entries to view. Perhaps you deleted them all or have not submitted an entry";
             }
         }

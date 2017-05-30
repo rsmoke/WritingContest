@@ -278,7 +278,8 @@ SQL;
     switch ($contestsID) { //What contests id is being submitted to
         case 17: //falls through
         case 21: //falls through
-        case 24: // it would be categoryID 3
+        case 24: //falls through
+        case 27: // it would be categoryID 3
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" checked required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
@@ -305,17 +306,15 @@ SQL;
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required >Shortfiction</label>';
             break;
-        case 3: //it would be categoryID 1 2 3 4 5
+        case 3: //it would be categoryID 1 2
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
-            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
-            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" required >Nonfiction</label>';
-            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" required >Nonfiction</label>';
+            //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required disabled >Shortfiction</label>';
             break;
-          //5,6,7,8,9,15 are all poetry only apps so they are default setting
-
         case 10: // it would be categoryID 1 2 3 4 5
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
@@ -361,17 +360,9 @@ SQL;
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required >Shortfiction</label>';
             break;
-        // case 21:  //it would be categoryID 3
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required >Novel</label>';
-        //     echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" checked required >Nonfiction</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required >Shortfiction</label>';
-        //     break;
         case 22: // falls through
-        case 25: //it would be categoryID 7
+        case 25: // falls through
+        case 28: //it would be categoryID 7
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required >Novel</label>';
@@ -380,25 +371,7 @@ SQL;
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" checked required >Shortfiction</label>';
             break;
-        // case 24:  //it would be categoryID 3
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required >Novel</label>';
-        //     echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" checked required >Nonfiction</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required >Shortfiction</label>';
-        //     break;
-        // case 25:  //it would be categoryID 7
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required >Novel</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="3" required >Nonfiction</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" required >Poetry</label>';
-        //     // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
-        //     echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" checked required >Shortfiction</label>';
-        //     break;
-        default:
+        default: //5,6,7,8,9,15,29 are all poetry only apps so they are default setting it would be categoryID 5
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';

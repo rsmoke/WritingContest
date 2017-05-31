@@ -306,7 +306,7 @@ SQL;
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required >Shortfiction</label>';
             break;
-        case 3: //it would be categoryID 1 2
+        case 30: //it would be categoryID 1 2
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required >Drama</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';

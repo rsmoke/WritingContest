@@ -400,6 +400,16 @@ SQL;
 
 <!-- if there is not a record display this stuff -->
 <?php include("footer.php");?>
+<script>
+var uploadField = document.getElementById("fileToUpload");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 20971520){
+       alert("Your file is too big!");
+       this.value = "";
+    };
+};
+</script>
 
 </body>
 </html>

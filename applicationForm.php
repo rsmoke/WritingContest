@@ -288,7 +288,9 @@ SQL;
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" required disabled >Screenplay</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" required disabled >Shortfiction</label>';
             break;
-        case 18: // it would be categoryID 4
+        case 18:
+        case 31:
+        case 32: // it would be categoryID 4
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" checked required >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';
@@ -371,7 +373,7 @@ SQL;
             // echo '<label class="radio-inline"><input type="radio" name="categoryName" value="2" checked required >Screenplay</label>';
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" checked required >Shortfiction</label>';
             break;
-        default: //5,6,7,8,9,15,29 are all poetry only apps so they are default setting it would be categoryID 5
+        default: //5,6,7,8,9,15,29,33 are all poetry only apps so they are default setting it would be categoryID 5
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="1" required disabled >Drama</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="4" required disabled >Fiction</label>';
             //echo '<label class="radio-inline"><input type="radio" name="categoryName" value="6" required disabled >Novel</label>';

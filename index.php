@@ -213,7 +213,7 @@ if ($hasApplicantDetails) {
                         <label for="stateL">State</label>
                           <select class="form-control bfh-states" tabindex="150" name="stateL" data-country="US" data-state="MI"></select>
                         <label for="zipL">Zip</label>
-                        <input class="form-control" type="text" tabindex="160" required name="zipL" pattern="(^[0-9]{5}$)" title="enter a 5 digit zipcode" />
+                        <input class="form-control" type="text" tabindex="160" required name="zipL" pattern="(^[0-9]{5,10}$)" title="enter a 5 digit zipcode" />
                         <label for="usrtelL">Phone</label>
                         <input class="form-control" type="text" tabindex="170" name="usrtelL" data-format="ddd-ddd-dddd"/>
                     <br />
@@ -226,7 +226,7 @@ if ($hasApplicantDetails) {
                           <select class="form-control bfh-states" tabindex="200" required name="stateH" data-country="countries" data-state="MI"></select>
                           <span id="helpBlock" class="help-block">If your hometown is not in the US, please select the country below first</span>
                         <label for="zipH">Zip</label>
-                        <input class="form-control" type="text" tabindex="210" required name="zipH" pattern="(^[0-9]{5}$)" title="enter a 5 digit zipcode"/>
+                        <input class="form-control" type="text" tabindex="210" required name="zipH" pattern="(^[0-9]{5,10}$)" title="enter a 5 digit zipcode"/>
                         <label for="countryH">Country</label>
                           <select id="countries" class="form-control bfh-countries" tabindex="200" required name="countryH" data-country="US"></select>
                         <label for="usrtelH">Phone</label>

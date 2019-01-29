@@ -166,7 +166,7 @@ switch ($classLevel) {
               <label for="stateL">State</label>
                 <select class="form-control bfh-states" tabindex="150" name="stateL" data-country="US" data-state="<?php echo $stateL;?>"></select>
               <label for="zipL">Zip</label>
-              <input class="form-control" type="text" tabindex="160" required name="zipL" value="<?php echo $zipL;?>" pattern="(^[0-9]{5}$)" placeholder="example: 48109" title="enter a 5 digit zipcode" />
+              <input class="form-control" type="text" tabindex="160" required name="zipL" value="<?php echo $zipL;?>" pattern="(^[0-9]{5,10}$)" placeholder="example: 48109" title="enter a 5 digit zipcode" />
               <label for="usrtelL">Phone</label>
               <input class="form-control bfh-phone" type="text" tabindex="170" name="usrtelL" data-format="ddd-ddd-dddd" value="<?php echo $usrtelL;?>" />
               <br />
@@ -179,7 +179,7 @@ switch ($classLevel) {
                 <select class="form-control bfh-states" tabindex="200" required name="stateH" data-country="countries" data-state="<?php echo $stateH;?>"></select>
                 <span id="helpBlock" class="help-block">If your hometown is not in the US, please select the country below first</span>
               <label for="zipH">Zip</label>
-              <input class="form-control" type="text" tabindex="210" required name="zipH" value="<?php echo $zipH;?>" pattern="(^[0-9]{5}$)" placeholder="example: 01101" title="enter a 5 digit zipcode"/>
+              <input class="form-control" type="text" tabindex="210" required name="zipH" value="<?php echo $zipH;?>" pattern="(^[0-9]{5,10}$)" placeholder="example: 01101" title="enter a 5 digit zipcode"/>
               <label for="countryH">Country</label>
                 <select id="countries" class="form-control bfh-countries" tabindex="200" required name="countryH" data-country="<?php echo $countryH;?>"></select>
               <label for="usrtelH">Phone</label>

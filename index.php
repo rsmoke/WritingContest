@@ -238,7 +238,7 @@ if ($hasApplicantDetails) {
                         I am a:
                         <div id="classLevelSelect">
                           <label class="radio-inline">
-                            <input type="radio" id="inlineRadio1" name="classLevel" required value="9"> Freshman
+                            <input type="radio" id="inlineRadio1" name="classLevel" required value="9"> FirstYear
                           </label>
                           <label class="radio-inline">
                             <input type="radio" id="inlineRadio1" name="classLevel" required value="10"> Sophmore

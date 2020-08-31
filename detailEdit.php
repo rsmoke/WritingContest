@@ -191,7 +191,7 @@ switch ($classLevel) {
               I am a:
               <div id="classLevelSelect">
                 <label class="radio-inline">
-                  <input type="radio" id="froshRad" name="classLevel" required value="9" <?php echo $froshRadState  ?> > Freshman
+                  <input type="radio" id="froshRad" name="classLevel" required value="9" <?php echo $froshRadState  ?> > FirstYear
                 </label>
                 <label class="radio-inline">
                   <input type="radio" id="sophRad" name="classLevel" required value="10" <?php echo $sophRadState  ?> > Sophmore

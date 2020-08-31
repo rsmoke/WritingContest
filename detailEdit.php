@@ -207,8 +207,8 @@ switch ($classLevel) {
                 </label>
                </div>
 
-              <label for="school">SCHOOL OR COLLEGE</label>
-              <input class="form-control" type="text" tabindex="230" required name="school" value="<?php echo $school;?>" placeholder="example: LSA" />
+              <label for="school">SCHOOL OR COLLEGE and <u>CAMPUS</u> (AnnArbor, Dearborn or Flint)</label>
+              <input class="form-control" type="text" tabindex="230" required name="school" value="<?php echo $school;?>" placeholder="example: LSA AnnArbor" />
               <label for="major">Major (if undergraduate)</label>
               <input class="form-control" type="text" tabindex="240" name="major" value="<?php echo (isset($major))? $major : "";?>" placeholder="example: English" />
               <label for="dept">Department (if graduate)</label>

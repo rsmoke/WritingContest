@@ -235,8 +235,8 @@ if ($hasApplicantDetails) {
                         <!-- //////////////////////////////// -->
                     <hr>
                         <h5>ACADEMICS:</h5>
-                        I am a:
-                        <div id="classLevelSelect">
+                        <label for="classLevel">I am a:</label>
+                        <div id="classLevelSelect" style="padding-left: 10px; margin-top: -5px; margin-bottom: 5px;">
                           <label class="radio-inline">
                             <input type="radio" id="inlineRadio1" name="classLevel" required value="9"> FirstYear
                           </label>
@@ -253,8 +253,20 @@ if ($hasApplicantDetails) {
                             <input type="radio" id="inlineRadio2" name="classLevel" required value="20"> Graduate
                           </label>
                         </div>
-                        <label for="school">SCHOOL OR COLLEGE and <u>CAMPUS</u> (AnnArbor, Dearborn or Flint)</label>
-                        <input class="form-control" type="text" tabindex="230" required name="school" placeholder="example: LSA AnnArbor" />
+                        <label for="school">SCHOOL OR COLLEGE</label>
+                        <input class="form-control" type="text" tabindex="230" required name="school" placeholder="example: LSA" />
+                        <label for="campusLocation">Campus you primarly attend classes at:</label>
+                        <div id="campusLocationSelect" style="padding-left: 10px; margin-top: -5px; margin-bottom: 5px;">
+                          <label class="radio-inline">
+                            <input type="radio" id="inlineRadio2" name="campusLocation" required value="a2"> Ann Arbor
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" id="inlineRadio2" name="campusLocation" required value="drbrn"> Dearborn
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" id="inlineRadio2" name="campusLocation" required value="flnt"> Flint
+                          </label>
+                        </div>
                         <label for="major">Major (if undergraduate)</label>
                         <input class="form-control" type="text" tabindex="240" name="major" placeholder="example: English" />
                         <label for="dept">Department (if graduate)</label>
@@ -278,7 +290,7 @@ if ($hasApplicantDetails) {
                         <hr>
                         <h5>PUBLICITY:</h5>
                         <p>If your manuscript earns a Hopwood or other award, the Hopwood committee will forward a press release to your local newspaper or media outlet.</p>
-                        <label for="namePub">Entrant's name as it should appear in publicity</label>
+                        <label for="namePub">Entrant's name as it should appear in publicity and Hopwood Awards program</label>
                         <input class="form-control" type="text" tabindex="280" name="namePub" value="<?php echo $userName[0] . " " . $userName[1];?>"/>
                         <label for="homeNewspaper">Name of your hometown newspaper or preferred media outlet</label>
                         <input class="form-control" type="text" tabindex="290" name="homeNewspaper"  placeholder="example: The Times-Argus" />

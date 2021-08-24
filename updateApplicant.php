@@ -19,6 +19,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     $usrtelH =  htmlspecialchars($_POST["usrtelH"]); //allow NULL
     $classLevel =  htmlspecialchars($_POST["classLevel"]);
     $school =  $db->real_escape_string(htmlspecialchars($_POST["school"]));
+    $campusLocation =  htmlspecialchars($_POST["campusLocation"]);
     $major =  $db->real_escape_string(htmlspecialchars($_POST["major"])); //allow NULL
     $department =  $db->real_escape_string(htmlspecialchars($_POST["department"])); //allow NULL
     $gradYearMonth =  htmlspecialchars($_POST["gradYearMonth"]);
@@ -46,6 +47,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
         usrtelH='$usrtelH',
         classLevel='$classLevel',
         school='$school',
+        campusLocation='$campusLocation',
         major='$major',
         department='$department',
         gradYearMonth='$gradYearMonth',

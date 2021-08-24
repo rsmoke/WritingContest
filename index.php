@@ -269,8 +269,8 @@ if ($hasApplicantDetails) {
                         </div>
                         <label for="major">Major (if undergraduate)</label>
                         <input class="form-control" type="text" tabindex="240" name="major" placeholder="example: English" />
-                        <label for="dept">Department (if graduate)</label>
-                        <input class="form-control" type="text" tabindex="250" name ="dept" placeholder="example: Dept. of English Language and Literature" />
+                        <label for="department">Department (if graduate)</label>
+                        <input class="form-control" type="text" tabindex="250" name ="department" placeholder="example: Dept. of English Language and Literature" />
                         <label for="gradYear">Expected graduation date</label>
                         <input class="date-picker form-control" id="gradYearMonth" tabindex="260" required name="gradYearMonth" />
                         <label for="degree">Degree</label>

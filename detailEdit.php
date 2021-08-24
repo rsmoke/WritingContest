@@ -240,8 +240,8 @@ switch ($campusLocation) {
                </div>
               <label for="major">Major (if undergraduate)</label>
               <input class="form-control" type="text" tabindex="240" name="major" value="<?php echo (isset($major))? $major : "";?>" placeholder="example: English" />
-              <label for="dept">Department (if graduate)</label>
-              <input class="form-control" type="text" tabindex="250" name ="dept" value="<?php echo (isset($dept))? $dept : "";?>" placeholder="example: Dept. of English Language and Literature" />
+              <label for="department">Department (if graduate)</label>
+              <input class="form-control" type="text" tabindex="250" name ="department" value="<?php echo (isset($department))? $department : "";?>" placeholder="example: Dept. of English Language and Literature" />
               <label for="gradYear">Expected graduation date</label>
               <input class="date-picker form-control" id="gradYearMonth" tabindex="260" required name="gradYearMonth" value="<?php echo $gradYearMonth;?>"  />
               <label for="degree">Degree</label>

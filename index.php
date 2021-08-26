@@ -86,6 +86,15 @@ if ($result->num_rows > 0) {
     </nav>
 
     <div class="container"><!--Container of all things -->
+      <div class='w-75 p-2'>
+        <h4 class='bg-warning text-center text-danger border border-danger'>
+          The Hopwood Room is closed until further notice. <br /><small class='text-muted'>The Hopwood contest judging
+          is continuing on schedule. Staff is working remotely and will answer your
+          emails within 24 hours during regular business hours.<br /> Please send inquiries
+          to: <a href='mailto:hopwoodprogram@umich.edu'>hopwoodprogram@umich.edu</a>.<br /> Updates will be posted on this website.
+          </small>
+        </h4>
+      </div>
     <div id="flashArea"><span class='flashNotify'>
     <?php
     if (isset($_SESSION['flashMessage'])) {

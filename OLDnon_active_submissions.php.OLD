@@ -1,3 +1,4 @@
+
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContest.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
@@ -34,7 +35,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
                 }
                   echo "</tbody></table>";
             } else {
-                echo "There are no inactive entries to view";
+                echo "There are no entries to view. Perhaps you deleted them all or have not submitted an entry";
             }
         }
-~

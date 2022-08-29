@@ -323,6 +323,9 @@ SQL;
         case 28: //it would be categoryID 7
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="7" checked required >Shortfiction</label>';
             break;
+        case 35: //it would be categoryID 8
+            echo '<label class="radio-inline"><input type="radio" name="categoryName" value="8" checked required >Text-Image_Composition</label>';
+            break;
         default: //5,6,7,8,9,15,29,33 are all poetry only apps so they are default setting it would be categoryID 5
             echo '<label class="radio-inline"><input type="radio" name="categoryName" value="5" checked required >Poetry</label>';
     };

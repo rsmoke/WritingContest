@@ -37,4 +37,3 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
                 echo "There are no inactive entries to view";
             }
         }
-~

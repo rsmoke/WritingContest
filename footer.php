@@ -37,7 +37,7 @@
 
 	<div class="row clearfix">
 		<div class="col-xs-12">
-		<a href="http://www.regents.umich.edu" class="btn btn-block btn-link btn-xs" type="button">© 2014 Regents of the University of Michigan</a>
+		<a href="http://www.regents.umich.edu" class="btn btn-block btn-link btn-xs" type="button">© <?php echo date("Y"); ?> Regents of the University of Michigan</a>
 		</div>
 	</div>
 </div>

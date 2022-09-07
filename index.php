@@ -86,17 +86,7 @@ if ($result->num_rows > 0) {
     </nav>
 
     <div class="container"><!--Container of all things -->
-	<!-- CONTESTS MESSAGING 
-      <div class='w-75 p-2'>
-        <h4 class='bg-warning text-center text-danger border border-danger'>
-          The Hopwood Room is closed until further notice. <br /><small class='text-muted'>The Hopwood contest judging
-          is continuing on schedule. Staff is working remotely and will answer your
-          emails within 24 hours during regular business hours.<br /> Please send inquiries
-          to: <a href='mailto:hopwoodprogram@umich.edu'>hopwoodprogram@umich.edu</a>.<br /> Updates will be posted on this website.
-          </small>
-        </h4>
-      </div>
--->
+
     <div id="flashArea"><span class='flashNotify'>
     <?php
     if (isset($_SESSION['flashMessage'])) {
@@ -147,10 +137,14 @@ if ($hasApplicantDetails) {
                     </dl>
                 </div>
             </div>
+
+            <?php include("finaid_notice.php"); ?>
+
             <div id="instructions">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                         <h3>Instructions:</h3>
+                        <p class="well well-sm">NOTE: Be sure your profile is up to date before submitting your entry.</em> <a href="detailEdit.php" class="btn btn-info btn-xs" type="button">keep your profile up to date</a></p>
                         <ol>
                             <li>Click the ( <span class="btn btn-success btn-xs" disabled="disabled"><span class="glyphicon glyphicon-pencil"></span></span> ) button adjacent to the name of the contest you’d like to enter.</li>
                             <li>Complete the form and click the ( <span class="btn btn-success btn-xs" disabled="disabled">Upload Application</span> ) button.</li>
@@ -281,20 +275,30 @@ if ($hasApplicantDetails) {
                         <label for="major">Major (if undergraduate)</label>
                         <input class="form-control" type="text" tabindex="240" name="major" placeholder="example: English" />
                         <label for="department">Department (if graduate)</label>
-                        <input class="form-control" type="text" tabindex="250" name ="department" placeholder="example: Dept. of English Language and Literature" />
+                        <input class="form-control" type="text" tabindex="250" name ="department" placeholder="example: The Helen Zell Writing Program" />
                         <label for="gradYear">Expected graduation date</label>
                         <input class="date-picker form-control" id="gradYearMonth" tabindex="260" required name="gradYearMonth" />
                         <label for="degree">Degree</label>
                         <input class="form-control" type="text" tabindex="270" required name="degree" placeholder="example: Bachelors" />
+                        <hr>
                         <label for="finAid">Do you receive NEED-BASED financial aid?&nbsp;&nbsp;</label>
                         <label class="radio-inline">
                           <input type="radio" id="inlineRadio1" name="finAid" required value="1"> YES
                         </label>
                         <label class="radio-inline">
                           <input type="radio" id="inlineRadio2" name="finAid" required value="0"> NO
-                        </label><br />
-                        <label for="finAidDesc">Details:</label>
-                        <input class="form-control" type="textarea" name="finAidDesc" placeholder="In what years and terms did you recieve aid"/>
+                        </label>
+                        <?php include("finaid_notice.php"); ?>
+                        <div class="well well-sm">
+                          <strong>I have read and understood the above statement about the potential impact of Hopwood Award prize money on financial aid.<strong>
+                          <label class="radio-inline">
+                            <input type="radio" id="inlineRadio3" name="finAidNotice" required value="1"> YES
+                          </label>
+                        </div>
+                        <div>
+                          <label for="finAidDesc">In what years and terms did you recieve aid:</label>
+                          <input class="form-control" type="textarea" name="finAidDesc" placeholder="In what years and terms did you recieve aid"/>
+                        </div>
 
                         <!-- //////////////////////////////// -->
 

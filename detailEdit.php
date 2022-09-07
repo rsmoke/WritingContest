@@ -36,6 +36,7 @@ if ($result->num_rows > 0) {
         $gradYearMonth =  $row["gradYearMonth"];
         $degree =  $row["degree"];
         $finAid =  $row["finAid"];
+        $finAidNotice = $row["finAidNotice"];
         $finAidDesc =  $row["finAidDesc"]; //allow NULL
         $namePub =  $row["namePub"]; //allow NULL
         $homeNewspaper =  $row["homeNewspaper"]; //allow NULL
@@ -246,19 +247,25 @@ switch ($campusLocation) {
               <input class="date-picker form-control" id="gradYearMonth" tabindex="260" required name="gradYearMonth" value="<?php echo $gradYearMonth;?>"  />
               <label for="degree">Degree</label>
               <input class="form-control" type="text" tabindex="270" required name="degree" value="<?php echo $degree;?>" placeholder="example: Bachelors" />
+              <hr>
               <label for="finAid">Do you currently receive NEED-BASED financial aid?&nbsp;&nbsp;</label>
-
               <label class="radio-inline">
                 <input type="radio" id="inlineRadio1" name="finAid" required <?php echo ($finAid == 1)? 'checked' : ''; ?> value="1"> YES
               </label>
               <label class="radio-inline">
                 <input type="radio" id="inlineRadio2" name="finAid" required <?php echo ($finAid == 0)? 'checked' : ''; ?> value="0"> NO
               </label>
-
-              <br />
-              <label for="finAidDesc">Details:</label>
-              <input class="form-control" type="textarea" name="finAidDesc" value="<?php echo $finAidDesc;?>" placeholder="In what years and terms did you recieve aid"/>
-
+              <?php include("finaid_notice.php"); ?>
+              <div class="well well-sm">
+                <strong>I have read and understood the above statement about the potential impact of Hopwood Award prize money on financial aid.<strong>
+                <label class="radio-inline">
+                  <input type="radio" id="inlineRadio3" name="finAidNotice" required <?php echo ($finAidNotice == 1)? 'checked' : ''; ?> value="1"> YES
+                </label>
+              </div>
+              <div>
+                <label for="finAidDesc">In what years and terms did you recieve aid:</label>
+                <input class="form-control" type="textarea" name="finAidDesc" value="<?php echo $finAidDesc;?>" placeholder="In what years and terms did you recieve aid"/>
+              </div>
               <!-- //////////////////////////////// -->
 
               <hr>

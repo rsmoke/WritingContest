@@ -25,6 +25,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
     $gradYearMonth =  htmlspecialchars($_POST["gradYearMonth"]);
     $degree =  $db->real_escape_string(htmlspecialchars($_POST["degree"]));
     $finAid =  htmlspecialchars($_POST["finAid"]);
+    $finAidNotice =  htmlspecialchars($_POST["finAidNotice"]);
     $finAidDesc =  $db->real_escape_string(htmlspecialchars($_POST["finAidDesc"])); //allow NULL
     $namePub =  $db->real_escape_string(htmlspecialchars($_POST["namePub"])); //allow NULL
     $homeNewspaper =  $db->real_escape_string(htmlspecialchars($_POST["homeNewspaper"])); //allow NULL
@@ -53,6 +54,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
         gradYearMonth='$gradYearMonth',
         degree='$degree',
         finAid='$finAid',
+        finAidNotice='$finAidNotice',
         finAidDesc='$finAidDesc',
         namePub='$namePub',
         homeNewspaper='$homeNewspaper',

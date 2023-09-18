@@ -9,3 +9,4 @@ notUsed/
 contestfiles/
 TODOs
 rsync_excludes
+.DS_Store
